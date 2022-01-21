@@ -1,7 +1,10 @@
 import datetime as dt
+from utility import Utility as ut
 from sqlalchemy import Column,  INTEGER, VARCHAR, FLOAT, DATE, or_
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+
 from sqlalchemy.ext.declarative import declarative_base
-import database as db
+from  database import Database
 Base = declarative_base()
 
 class BankAccount(Base):
@@ -9,7 +12,8 @@ class BankAccount(Base):
 
     __tablename__ = 'bankaccount'
 
-    account_no = Column(INTEGER, primary_key=True)
+    account_id = Column(INTEGER, primary_key=True)
+    account_no = Column(INTEGER)
     account_type = Column(VARCHAR(30), nullable=False)
     balance = Column(FLOAT)
     intrst_rate = Column(FLOAT)
@@ -25,6 +29,37 @@ class BankAccount(Base):
     def withdraw(self, amount):
         self.balance -= amount
 
+
+
+
+    @staticmethod
+    def seek_by_account_no(db, p_account_no):
+        """search the account record in database by account_no; return account_id if succeed
+
+          Args:
+            db (Database): a Database object
+            p_account_no (str): account_no
+
+        Returns:
+            a tuple which could have following values:
+                 (1, acount_no)  -- one found
+                 (-1, 'no one found') -- fail
+                 (-2, 'unknown failure') -- fail
+        """
+
+        try:
+            session = db.get_session()
+
+            rec = session.query(BankAccount).\
+                filter(BankAccount.account_no == p_account_no).\
+                one()
+
+            return (1, rec.account_id)
+        except NoResultFound:
+            return (-1, '1.not found')
+        except Exception as e:
+            print(e)
+            return (-2, 'unknown failure ')
 
 class SavingsAccount(BankAccount):
     ''' A class to represent a bank account'''
@@ -59,13 +94,16 @@ class CheckingAccount(BankAccount):
 
         BankAccount.withdraw(self,amount1)
 
-
-
 if __name__ == '__main__':
 
-    db_url = "mysql+pymysql://chu:tree@localhost:3306/bank"
-    bank_db = Database(db_url)
+    bank_db = Database()
 
+        #bank_db.get_session()
+
+    print('**********************************')
+
+    result = BankAccount.seek_by_account_no(bank_db, 34456)
+    ut.print_one(result)
 
 
 
