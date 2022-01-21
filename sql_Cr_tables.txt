@@ -1,0 +1,43 @@
+
+CREATE TABLE  customer(
+   customer_no INT NOT NULL AUTO_INCREMENT,
+   name  VARCHAR(60) NOT NULL,
+   address VARCHAR(100),
+  PRIMARY KEY (customer_no)
+)
+;
+
+-- table for bankaccount
+
+CREATE TABLE  bankaccount(
+   account_no INT NOT NULL AUTO_INCREMENT,
+   account_type VARCHAR(30s) NOT NULL,
+   balance INT,
+   intrst_rate FLOAT,
+   fee_limit FLOAT,
+   cr_date  DATE,
+   PRIMARY KEY (account_no)
+   )
+
+
+-- Bridge table for customer and account
+CREATE TABLE  b_customer_account
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   customer_no INT NOT NULL,
+   aaccount_no INT NOT NULL ,
+   cr_date  DATE,
+  PRIMARY KEY (id)
+)
+;
+
+
+
+CREATE TABLE  bank(
+   bank_id INT NOT NULL AUTO_INCREMENT,
+   bank_no VARCHAR(10) NOT NULL ,
+   name  VARCHAR(60) NOT NULL,
+  PRIMARY KEY (bank_id)
+)
+;
+
