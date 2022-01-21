@@ -1,7 +1,8 @@
 import datetime as dt
 from utility import Utility as ut
 from sqlalchemy import Column,  INTEGER, VARCHAR, FLOAT, DATE, or_
-from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+from sqlalchemy import exc
+    #NoResultFound, MultipleResultsFound, IntegrityError
 
 from sqlalchemy.ext.declarative import declarative_base
 from  database import Database
@@ -25,15 +26,24 @@ class BankAccount(Base):
         self.cr_date= dt.datetime.today()
 
       #  self.account_type =''
+    def set_account_no(self,p_account_no):
+        self.account_no =p_account_no
+
+    def pr_detail(self):
+        ut.print_one("account info ")
+        print("account_no:{}".format(self.account_no))
+        print("account_type:{}".format(self.account_type))
+        print("balance:{}".format(self.balance))
+        print("date_cr:{}".format(self.cr_date))
+        print("intrst_rate:{}".format(self.intrst_rate))
+        print("fee_limit:{}".format(self.fee_limit))
 
     def withdraw(self, amount):
         self.balance -= amount
 
 
-
-
     @staticmethod
-    def seek_by_account_no(db, p_account_no):
+    def seek_db_by_account_no(db, p_account_no):
         """search the account record in database by account_no; return account_id if succeed
 
           Args:
@@ -42,7 +52,7 @@ class BankAccount(Base):
 
         Returns:
             a tuple which could have following values:
-                 (1, acount_no)  -- one found
+                 (1, acount_id)  -- one found
                  (-1, 'no one found') -- fail
                  (-2, 'unknown failure') -- fail
         """
@@ -55,55 +65,95 @@ class BankAccount(Base):
                 one()
 
             return (1, rec.account_id)
-        except NoResultFound:
+        except exc.NoResultFound:
             return (-1, '1.not found')
         except Exception as e:
             print(e)
             return (-2, 'unknown failure ')
 
+
+    def new_in_db(self, p_database):
+        """write this new customer to database
+
+          Args:
+            self : The first parameter.
+            p_database (Database object):
+
+          Returns:
+            a tuple as follows:
+                  (1, None), if success
+                  (-1, 'customer already exist so action cancelled
+                  -2, other failure
+        """
+
+        try:
+                #write this object  to database
+                session = p_database.get_session()
+                session.add(self)
+                session.commit()
+
+                # if succeed
+                return (1, None)
+
+        except exc.IntegrityError:
+               session.rollback()
+               return (-1, '1.Operation failed -- Account_no already existed. ')
+
+
+        except Exception as e:
+                #Other fail
+                session.rollback()
+                ut.print_one('2.1.Operation failed -- Unkown error. ')
+                return -2
+
+
+
 class SavingsAccount(BankAccount):
     ''' A class to represent a bank account'''
 
-    def __init__(self, balance, intrst_rate):
-       BankAccount.__init__(balance)
+    def __init__(self, balance, intrst_rate=0):
+       BankAccount.__init__(self, balance)
+       self.balance = balance
        self.intrst_rate =intrst_rate
        self.account_type = 'savings'
 
     def calc_interest(self, n_period=1):
         return self.balance*((1+ self.intrst.rate)**n_period-1)
 
-
-
 class CheckingAccount(BankAccount):
     ''' A class to represent a bank account'''
 
-    def __init__(self, balance, fee_limit):
-       BankAccount.__init__(balance)
-       self.fee_limit =fee_limit
+    def __init__(self, balance, fee_limit=0):
+       BankAccount.__init__(self, balance)
        self.account_type = 'checking'
+       self.balance = balance
+       self.fee_limit = fee_limit
 
-    def deposit(self, amount):
-        self.balance += amount
-
-
-    def withdraw(self, amount, fee=0):
-        if fee<=self.fee_limit:
-            amount1 =amount-fee
-        else:
-            amount1 =amount -- self.fee_limit
-
-        BankAccount.withdraw(self,amount1)
 
 if __name__ == '__main__':
 
     bank_db = Database()
 
-        #bank_db.get_session()
+#    s_account =  SavingsAccount(300)
+ #   s_account.set_account_no(3396)
 
-    print('**********************************')
 
-    result = BankAccount.seek_by_account_no(bank_db, 34456)
+    chk_account =  CheckingAccount(1999)
+    chk_account.set_account_no(20002)
+    chk_account.pr_detail()
+
+    result = chk_account.new_in_db(bank_db)
     ut.print_one(result)
+
+    '''
+   
+
+    result = s_account.new_in_db(bank_db)
+    ut.print_one(result)
+
+    #t1_res = BankAccount.seek_db_by_account_no(bank_db, 344)
+    '''
+
 
 
 

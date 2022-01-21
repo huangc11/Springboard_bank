@@ -10,13 +10,14 @@ CREATE TABLE  customer(
 -- table for bankaccount
 
 CREATE TABLE  bankaccount(
-   account_no INT NOT NULL AUTO_INCREMENT,
-   account_type VARCHAR(30s) NOT NULL,
+   account_id INT NOT NULL AUTO_INCREMENT,
+   account_no INT NOT NULL UNIQUE ,
+   account_type VARCHAR(20),
    balance INT,
    intrst_rate FLOAT,
    fee_limit FLOAT,
    cr_date  DATE,
-   PRIMARY KEY (account_no)
+   PRIMARY KEY (account_id)
    )
 
 

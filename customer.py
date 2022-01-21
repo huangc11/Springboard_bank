@@ -1,6 +1,9 @@
 from sqlalchemy import Column,  INTEGER, VARCHAR, or_
 from sqlalchemy.ext.declarative import declarative_base
-import database as db
+#import database as db
+from  database import Database
+from utility import Utility as ut
+
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 Base = declarative_base()
 
@@ -20,7 +23,7 @@ class Customer(Base):
     __init__(self, name, address='', cust_no=None):
         constructor
 
-    new_customer_in_db():
+    new_in_db():
         create the new customer in database and return  the customer_no generated
 
     """
@@ -38,7 +41,7 @@ class Customer(Base):
     def set_customer_no(self,cust_no):
         self.cust_no = cust_no
 
-    def new_customer_in_db(self):
+    def new_in_db(self,p_db):
         """write this new customer to database; return customer_no
 
           Args:
@@ -52,12 +55,14 @@ class Customer(Base):
                   -3, other  failures (unknown reason)
         """
         #search DB to make sure no customer with same name and address exist
-        session = db.Database.get_session()
-        result = Customer.seek_by_name_addr( self.name, self.address)
+        #----session = db.Database.get_session()
+        session = p_db.get_session()
 
-        #if one ore more records found
+        result = Customer.seek_db_by_name_addr(p_db, self.name, self.address)
+
+        #if one ore morfe records found
         if result[0] ==1 or result[0] ==2:
-            print('Customer with same info  already exist: {}'.format(result[1]))
+           # ut.print_error('Customer with same info  already exist: {}'.format(result[1]))
             return (-1)
 
 
@@ -69,7 +74,8 @@ class Customer(Base):
                 session.commit()
 
                 # search db to get customer_no of the new customer
-                result  =Customer.seek_by_name_addr(self.name, self.address)
+                ut.print_one('great, customoer created')
+                result  =Customer.seek_db_by_name_addr(p_db, self.name, self.address)
 
                 #if search succeeds, return customer_no
                 if result[0]==1:
@@ -79,12 +85,12 @@ class Customer(Base):
                     return -2
 
             except Exception as e:
-                #Other fail
+                session.rollback()
                 print(e)
                 return -3
 
     @staticmethod
-    def seek_by_name_addr(p_name, p_addr=None):
+    def seek_db_by_name_addr(p_db, p_name, p_addr=None):
         """search one and only one customer in database by name and address; return customer_no if succeed
 
           Args:
@@ -95,14 +101,14 @@ class Customer(Base):
 
         Returns:
             a tuple which could have following values:
-                 (1, customer_no)  -- one found
+                 (1, 'customer found exising: customer_no= '+customer_no)  -- one found
                  (2, 'multiple customers found')
                  (-1, 'no one found') -- fail
                  (-2, 'unknown failure') -- fail
         """
 
         try:
-            session = db.Database.get_session()
+            session = p_db.get_session()
             rec = session.query(Customer).\
                 filter(Customer.name == p_name).\
                 filter(or_(Customer.address == p_addr,
@@ -127,7 +133,7 @@ class Customer(Base):
     def __repr__(self):
       return ("Customer({cust_no}, '{name}', '{address}')".format(cust_no=self.cust_no, name=self.name, address=self.address))
 
-def create_customer():
+def create_customer(p_db):
 
     name = input("Please enter the new customer's name: ")
     addr = input("Please enter the new customer's address: ")
@@ -139,21 +145,25 @@ def create_customer():
     else:
         c1 = Customer(name, addr)
 
-        c_no = c1.new_customer_in_db()
-        print(c_no)
-        if c_no == -1 :
-            print("creation failed!")
-        else:
+        c_no = c1.new_in_db(p_db)
+
+        if c_no>0:
             print("%%%%%%%% customer has been created %%%%%%%% ")
             print("         The customer_no is: {} ".format(c_no))
+        elif c_no == -1 :
+            print("%%%%%%%% Customer already exist. Creation failed %%%%%%%% ")
+        else:
+            print("%%%%%%%% Creation failed due to unknow reason%%%%%%%% ")
+
 
     return c1
 
 
 if __name__ == '__main__':
-    db.Database.initialise()
+   # db.Database.initialise()
+    bank_db = Database()
     #session = Database.get_session()
-    create_customer()
-   # result= Customer.seek_by_name_addr('huang1',None)
-    #print(result)
-    c_no ='123'
+    create_customer(bank_db)
+   # result= Customer.seek_db_by_name_addr(bank_db, 'huang','kenmore')
+   # print(result)
+    #c_no ='123'

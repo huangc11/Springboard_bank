@@ -14,17 +14,14 @@ class Database:
         #"mysql+pymysql://chu:tree@localhost:3306/bank"
 
         engine = create_engine(Database.__db_url, echo=False)
-        #engine = create_engine(db_url, echo=False)
         Session = sessionmaker(bind=engine)
         self.session = Session()
         self.engine = engine
-        ut.print_one(self.session)
-        #Database.session= self.session
+
 
 
 
     def get_session(self):
-        print("@@@@@@ session:{} @@@@@@@".format(self.session))
         return self.session
 
     def print_session(self):
@@ -44,7 +41,3 @@ class Database:
 if __name__ == '__main__':
 
     bank_db = Database()
-
-    session1 = bank_db.get_session()
-    ut.print_one('session1')
-    ut.print_one(session1)
