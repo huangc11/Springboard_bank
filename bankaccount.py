@@ -31,6 +31,7 @@ class BankAccount(Base):
 
     def pr_detail(self):
         ut.print_one("account info ")
+        print("account_id:{}".format(self.account_id))
         print("account_no:{}".format(self.account_no))
         print("account_type:{}".format(self.account_type))
         print("balance:{}".format(self.balance))
@@ -83,7 +84,7 @@ class BankAccount(Base):
             a tuple as follows:
                   (1, None), if success
                   (-1, 'customer already exist so action cancelled
-                  -2, other failure
+                  (-2, 'db failure'
         """
 
         try:
@@ -92,13 +93,13 @@ class BankAccount(Base):
                 session.add(self)
                 session.commit()
 
+
                 # if succeed
-                return (1, None)
+                return (1, self.account_id)
 
         except exc.IntegrityError:
                session.rollback()
                return (-1, '1.Operation failed -- Account_no already existed. ')
-
 
         except Exception as e:
                 #Other fail
@@ -138,11 +139,13 @@ if __name__ == '__main__':
  #   s_account.set_account_no(3396)
 
 
-    chk_account =  CheckingAccount(1999)
-    chk_account.set_account_no(20002)
+    chk_account =  CheckingAccount(500)
+    chk_account.set_account_no(20036)
     chk_account.pr_detail()
 
     result = chk_account.new_in_db(bank_db)
+    ut.print_one('after new_in_db')
+    chk_account.pr_detail()
     ut.print_one(result)
 
     '''

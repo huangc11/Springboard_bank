@@ -2,8 +2,12 @@
 /shelf/
 /workspace.xml
 *.pyc
+*.csv
 
 work_temp\
 __pycache__/
+tmp/
+tmp2/
+tmp2\
 
 
