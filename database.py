@@ -17,12 +17,19 @@ class Database:
         Session = sessionmaker(bind=engine)
         self.session = Session()
         self.engine = engine
+        Database.__session = self.session
 
 
 
 
     def get_session(self):
         return self.session
+
+
+    @staticmethod
+    def get_session1():
+        return Database.__session
+
 
     def print_session(self):
         print("%%%%%%% session:{} %%%%%%%%".format(self.session))
@@ -41,3 +48,6 @@ class Database:
 if __name__ == '__main__':
 
     bank_db = Database()
+    session = Database.get_session1()
+
+    ut.print_one(session)
