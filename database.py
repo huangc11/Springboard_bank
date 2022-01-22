@@ -19,8 +19,6 @@ class Database:
         self.engine = engine
 
 
-
-
     def get_session(self):
         return self.session
 
