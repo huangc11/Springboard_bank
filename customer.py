@@ -41,7 +41,7 @@ class Customer(Base):
     def set_customer_no(self,cust_no):
         self.cust_no = cust_no
 
-    def new_in_db(self,p_db):
+    def new_in_db(self,p_db_session):
         """write this new customer to database; return customer_no
 
           Args:
@@ -56,9 +56,9 @@ class Customer(Base):
         """
         #search DB to make sure no customer with same name and address exist
         #----session = db.Database.get_session()
-        session = p_db.get_session()
+        session = p_db_session
 
-        result = Customer.seek_db_by_name_addr(p_db, self.name, self.address)
+        result = Customer.seek_db_by_name_addr(p_db_session, self.name, self.address)
 
         #if one ore morfe records found
         if result[0] ==1 or result[0] ==2:
@@ -75,7 +75,7 @@ class Customer(Base):
 
                 # search db to get customer_no of the new customer
                 ut.print_one('great, customoer created')
-                result  =Customer.seek_db_by_name_addr(p_db, self.name, self.address)
+                result  =Customer.seek_db_by_name_addr(p_db_session, self.name, self.address)
 
                 #if search succeeds, return customer_no
                 if result[0]==1:
@@ -90,7 +90,7 @@ class Customer(Base):
                 return -3
 
     @staticmethod
-    def seek_db_by_name_addr(p_db, p_name, p_addr=None):
+    def seek_db_by_name_addr(p_db_session, p_name, p_addr=None):
         """search one and only one customer in database by name and address; return customer_no if succeed
 
           Args:
@@ -108,7 +108,7 @@ class Customer(Base):
         """
 
         try:
-            session = p_db.get_session()
+            session = p_db_session
             rec = session.query(Customer).\
                 filter(Customer.name == p_name).\
                 filter(or_(Customer.address == p_addr,
@@ -133,7 +133,7 @@ class Customer(Base):
     def __repr__(self):
       return ("Customer({cust_no}, '{name}', '{address}')".format(cust_no=self.cust_no, name=self.name, address=self.address))
 
-def create_customer(p_db):
+def create_customer(p_db_session):
 
     name = input("Please enter the new customer's name: ")
     addr = input("Please enter the new customer's address: ")
@@ -145,7 +145,7 @@ def create_customer(p_db):
     else:
         c1 = Customer(name, addr)
 
-        c_no = c1.new_in_db(p_db)
+        c_no = c1.new_in_db(p_db_session)
 
         if c_no>0:
             print("%%%%%%%% customer has been created %%%%%%%% ")
@@ -163,7 +163,8 @@ if __name__ == '__main__':
    # db.Database.initialise()
     bank_db = Database()
     #session = Database.get_session()
-    create_customer(bank_db)
-   # result= Customer.seek_db_by_name_addr(bank_db, 'huang','kenmore')
+    db_session =bank_db.get_session()
+    create_customer(db_session)
+
    # print(result)
     #c_no ='123'
