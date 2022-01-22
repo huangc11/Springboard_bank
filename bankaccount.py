@@ -43,7 +43,7 @@ class BankAccount(Base):
 
 
     @staticmethod
-    def seek_db_by_account_no(db_class, p_account_no):
+    def seek_db_by_account_no(db, p_account_no):
         """search the account record in database by account_no; return account_id if succeed
 
           Args:
@@ -58,14 +58,12 @@ class BankAccount(Base):
         """
 
         try:
-            session = db_class.get_session1()
-
+            session = db.get_session()
 
             rec = session.query(BankAccount).\
                 filter(BankAccount.account_no == p_account_no).\
                 one()
 
-            ut.print_one(rec)
             return (1, rec.account_id)
         except exc.NoResultFound:
             return (-1, '1.not found')
@@ -135,31 +133,26 @@ class CheckingAccount(BankAccount):
 if __name__ == '__main__':
 
     bank_db = Database()
-    ut.print_one(Database.get_session1())
-    t1_res = BankAccount.seek_db_by_account_no(Database, 20001)
-
-    ut.print_one(t1_res)
 
 #    s_account =  SavingsAccount(300)
  #   s_account.set_account_no(3396)
 
-'''
+
     chk_account =  CheckingAccount(1999)
     chk_account.set_account_no(20002)
     chk_account.pr_detail()
 
     result = chk_account.new_in_db(bank_db)
+    ut.print_one(result)
 
-
-  
+    '''
    
 
     result = s_account.new_in_db(bank_db)
     ut.print_one(result)
-  '''
 
-
-
+    #t1_res = BankAccount.seek_db_by_account_no(bank_db, 344)
+    '''
 
 
 
