@@ -20,8 +20,6 @@ class Database:
         Database.__session = self.session
 
 
-
-
     def get_session(self):
         return self.session
 
