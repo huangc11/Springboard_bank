@@ -43,12 +43,14 @@ class Database:
 
     @staticmethod
     def update_rec_in_db(DBClass, id, dict_mapped):
-        session = Database.get_session_()
+        session = Database.get_session()
 
-        ut.print_one((dict_mapped))
-
-        session.query(DBClass).filter(DBClass.account_id ==id).update(dict_mapped)
-        session.commit()
+        try:
+            session.query(DBClass).filter(DBClass.id ==id).update(dict_mapped)
+            session.commit()
+            return 1
+        except Exception as e:
+            return -1
 
    # s.query(Media).filter(Media.id == self.id).update(mapped_values)
 
@@ -69,7 +71,6 @@ class Database:
             """
 
             session = Database.get_session()
-            ut.print_one(object)
 
             try:
                     #write this object  to database
@@ -81,13 +82,15 @@ class Database:
 
             except exc.IntegrityError:
                    session.rollback()
-                   return (-1, '1.Operation failed -- record with this primary key value exists ')
+                   ut.print_error('1. new record in db failed -- record with same primary key value exists')
+                   return (-1, '1. new record in db failed -- record with same primary key value exists ')
 
             except Exception as e:
                     #Other fail
                     session.rollback()
-                    ut.print_one('2.Operation failed . ')
-                    ut.print_one(e)
+                    ut.print_error('2. new record in db failed . ')
+                    ut.print_error(object)
+                    ut.print_error(e)
                     return (-2, 'operation failed')
 
 

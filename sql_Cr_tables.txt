@@ -15,20 +15,38 @@ CREATE TABLE  bankaccount(
    account_type VARCHAR(20),
    balance INT,
    intrst_rate FLOAT,
-   fee_limit FLOAT,
    cr_date  DATE,
    PRIMARY KEY (account_id)
    )
 
 
+CREATE TABLE  acc_transaction(
+   id INT NOT NULL AUTO_INCREMENT,
+   account_no INT NOT NULL ,
+   type VARCHAR(20),
+   amount FLOAT,
+   cr_date  DATE,
+   PRIMARY KEY (id)
+   )
+
 -- Bridge table for customer and account
-CREATE TABLE  b_customer_account
+CREATE TABLE  customer_account
 (
    id INT NOT NULL AUTO_INCREMENT,
-   customer_no INT NOT NULL,
-   aaccount_no INT NOT NULL ,
-   cr_date  DATE,
-  PRIMARY KEY (id)
+   customer_id INT NOT NULL,
+   account_id INT NOT NULL ,
+   cr_datetime  DATETIME,
+   PRIMARY KEY (id)
+)
+;
+
+CREATE TABLE  employee
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(50),
+   level VARCHAR(50),
+   project VARCHAR(100),
+   PRIMARY KEY (id)
 )
 ;
 
