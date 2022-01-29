@@ -1,4 +1,21 @@
 
+
+
+
+students_classes_association = Table('students_classes', Base.metadata,
+    Column('student_id', Integer, ForeignKey('students.id')),
+    Column('class_id', Integer, ForeignKey('classes.id'))
+)
+
+class Student(Base):
+    __tablename__ = 'students'
+    id = Column(Integer, primary_key=True)
+    classes = relationship("Class", secondary=students_classes_association)
+
+class Class(Base):
+    __tablename__ = 'classes'
+    id = Column(Integer, primary_key=True)
+------------
 class BankAccount
     def new_in_db(self):
         """write this new customer to database

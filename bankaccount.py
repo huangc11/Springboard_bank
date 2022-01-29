@@ -181,7 +181,6 @@ class CheckingAccount(BankAccount):
 def create_account(acc_type ):
     def collect_info_for_savings():
         #c_customer_no = input("Please enter customer_no: ")
-        #c_account_no = input("Please enter account_no: ")
         c_balance = int(input("Please enter balance: "))
         c_intrst_rate = float(input("Please enter intrst_rate: "))
 
@@ -190,9 +189,7 @@ def create_account(acc_type ):
 
     def collect_info_for_checking():
         #c_customer_no = input("Please enter customer_no: ")
-        #c_account_no = input("Please enter account_no: ")
         c_balance = int(input("Please enter balance: "))
-        c_intrst_rate = float(input("Please enter intrst_rate: "))
 
     collect_for_savings()
     o_account = SavingsAccount(c_balance, c_intrst_rate)
@@ -212,9 +209,7 @@ def create_checking_account():
 
     #c_customer_no = input("Please enter customer_no: ")
     c_balance = int(input("Please enter balance: "))
-
     c_account = CheckingAccount(c_balance)
-
     result = c_account.create_account_db()
 
 

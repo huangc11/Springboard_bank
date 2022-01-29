@@ -88,6 +88,29 @@ class Customer(Base):
             return (-2, 'Seeking customer in DB failed')
 
 
+    @staticmethod
+    def seek_db_by_id(p_id):
+        """search  customer in database by name and address
+          Args:
+            p_id (int): customer id
+
+        Returns:
+            a tuple which could have following values:
+                 (1, id)   -- single result found
+                 (-2, 'action fails due to low level issue') --failure
+        """
+
+        try:
+            session = Database.get_session()
+            rec = session.query(Customer).filter(Customer.id == p_id).one()
+            return (1, rec.id)
+        except MultipleResultsFound:
+            return (2, 'multiple results found')
+        except Exception as e:
+            ut.print_error(e)
+            return (-1, 'not found or error out')
+
+
 def create_customer():
 
     name = input("Please enter the new customer's name: ")
@@ -128,5 +151,6 @@ def create_customer():
 if __name__ == '__main__':
     Database.initialise()
    # create_customer()
-    Customer.list_customer()
+    #Customer.list_customer()
+    print(Customer.seek_db_by_id(189))
 

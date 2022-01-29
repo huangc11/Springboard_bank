@@ -80,10 +80,12 @@ class Database:
                     # if succeed return (1, object.id)
                     return (1, object.id)
 
-            except exc.IntegrityError:
-                   session.rollback()
-                   ut.print_error('1. new record in db failed -- record with same primary key value exists')
-                   return (-1, '1. new record in db failed -- record with same primary key value exists ')
+
+            except exc.IntegrityError as err:
+                   error_msg = '1. new record in db failed -- data integrity error (primary key/foreigin key/unique key...) '
+                   #ut.print_error(error_msg )
+                   return (-1, error_msg)
+
 
             except Exception as e:
                     #Other fail

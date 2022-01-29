@@ -11,6 +11,5 @@ class Utility:
         print(one.center(70,'!'))
 
 
-
     def print_debug(one):
         print('!!{} '.format(one))
