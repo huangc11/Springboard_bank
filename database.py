@@ -10,6 +10,8 @@ class Database:
     __db_url ="mysql+pymysql://chu:tree@localhost:3306/bank"
     __session = None
     __engine = None
+    const_success = 1
+    const_fail = -1
     #session =None
 
     def __init__(self):
@@ -43,14 +45,26 @@ class Database:
 
     @staticmethod
     def update_rec_in_db(DBClass, id, dict_mapped):
+        """update table record in database
+
+          Args:
+           DBClass (class -- table):
+           id (str): id of the record to be  updated
+           dict_mapped: dict  which contains the  column/value pairs to be updated
+
+          Returns:
+                 const_success, if success
+                 const_fail, if failure
+        """
         session = Database.get_session()
 
         try:
             session.query(DBClass).filter(DBClass.id ==id).update(dict_mapped)
             session.commit()
-            return 1
+            return Database.const_success
         except Exception as e:
-            return -1
+            ut.log_exeption(e)
+            return Database.const_fail
 
    # s.query(Media).filter(Media.id == self.id).update(mapped_values)
 
@@ -64,10 +78,8 @@ class Database:
                 p_database (Database object):
 
               Returns:
-                a tuple as follows:
-                      (1, id), if success
-                      (-1, '.Operation failed -- record with this primary key value exists')
-                      (-2, 'operation failed')
+                      object, if success
+                      None, if failure
             """
 
             session = Database.get_session()
@@ -78,22 +90,12 @@ class Database:
                     session.commit()
 
                     # if succeed return (1, object.id)
-                    return (1, object.id)
-
-
-            except exc.IntegrityError as err:
-                   error_msg = '1. new record in db failed -- data integrity error (primary key/foreigin key/unique key...) '
-                   #ut.print_error(error_msg )
-                   return (-1, error_msg)
-
+                    return object
 
             except Exception as e:
-                    #Other fail
-                    session.rollback()
-                    ut.print_error('2. new record in db failed . ')
-                    ut.print_error(object)
-                    ut.print_error(e)
-                    return (-2, 'operation failed')
+                    #if fail
+                    ut.log_exeption(e)
+                    return None
 
 
 

@@ -1,0 +1,65 @@
+
+2022-01-30 08:54:42,431:utility.py:utility:INFO:--------------------------------------------------------------------------------
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:17:17,494:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:18:10,891:utility.py:utility:INFO:hello
+2022-01-30 21:18:11,061:utility.py:utility:INFO:Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:18:11,082:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:31:57,018:utility.py:utility:INFO:hello
+2022-01-30 21:31:57,380:utility.py:utility:INFO:Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:31:57,412:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:33:34,806:utility.py:utility:INFO:hello
+2022-01-30 21:33:34,982:utility.py:utility:INFO:Foreign key associated with column 'customer_account.customer_id' could not find table 'customer' with which to generate a foreign key to target column 'id'
+2022-01-30 21:33:34,990:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:34:28,777:utility.py:utility:INFO:hello
+2022-01-30 21:34:29,005:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:35:05,674:utility.py:utility:INFO:hello
+2022-01-30 21:35:05,817:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:36:13,947:utility.py:utility:INFO:hello
+2022-01-30 21:36:14,117:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:36:53,210:utility.py:utility:INFO:hello
+2022-01-30 21:36:53,408:utility.py:utility:INFO:Customer-account connection: (101, 104) created.
+2022-01-30 21:44:16,499:utility.py:utility:INFO:hello
+2022-01-30 21:44:16,831:utility.py:utility:INFO:Customer-account connection: (101, 104) created.
+2022-01-30 21:53:23,657:utility.py:utility:INFO:hello
+2022-01-30 21:53:25,090:utility.py:utility:INFO:(pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 100, 'account_id': 175, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 53, 25, 76602)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-01-30 21:53:25,140:utility.py:utility:INFO:Account creation failed -- customer-account assignment failed
+2022-01-30 21:53:25,142:utility.py:utility:INFO:account creationng fails -- customer_id 100not found.
+2022-01-30 21:55:31,349:utility.py:utility:INFO:hello
+2022-01-30 21:55:31,504:utility.py:utility:INFO:(pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 101, 'account_id': 104, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 55, 31, 497937)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-01-30 21:55:31,525:utility.py:utility:INFO:Customer-account connection: (101, 104) failed.
+2022-01-30 21:58:37,489:utility.py:utility:INFO:hello
+2022-01-30 21:58:37,704:utility.py:utility:INFO:Customer-account connection: (101, 104) created.
+2022-01-30 21:58:57,749:utility.py:utility:INFO:hello
+2022-01-30 21:58:57,926:utility.py:utility:INFO:Customer-account connection: (101, 104) created.
+2022-01-30 21:59:31,914:utility.py:utility:INFO:hello
+2022-01-30 21:59:32,530:utility.py:utility:INFO:Account successfully created and assgined to customer.
+2022-01-30 21:59:32,609:utility.py:utility:INFO:Account successfully created and assgined to customer.
+2022-01-30 22:00:11,637:utility.py:utility:INFO:hello
+2022-01-30 22:00:12,450:utility.py:utility:INFO:Account successfully created and assgined to customer.
+2022-01-30 22:00:12,507:utility.py:utility:INFO:Account successfully created and assgined to customer.
+2022-01-30 22:04:41,477:utility.py:utility:INFO:hello
+2022-01-30 22:04:42,591:utility.py:utility:INFO:Account (id =180) successfully created and assgined to customer (id=100).
+2022-01-30 22:05:48,220:utility.py:utility:INFO:hello
+2022-01-30 22:05:49,250:utility.py:utility:INFO:Account (id =181) successfully created and assgined to customer (id=100).
+2022-01-30 22:06:20,555:utility.py:utility:INFO:hello
+2022-01-30 22:06:21,222:utility.py:utility:INFO:Account (id =182) successfully created and assgined to customer (id=100).
+2022-01-30 22:07:04,519:utility.py:utility:INFO:hello
+2022-01-30 22:07:05,526:utility.py:utility:INFO:Account (id =183) successfully created and assgined to customer (id=100).
+2022-01-30 22:08:49,904:utility.py:utility:INFO:hello
+2022-01-30 22:08:51,097:utility.py:utility:INFO:Account (id =184) successfully created and assgined to customer (id=100).
+2022-01-30 22:08:51,098:utility.py:utility:INFO:Account: BankAccount(184, 20184, 'checking', 400.0)
+2022-01-30 22:09:13,233:utility.py:utility:INFO:hello
+2022-01-30 22:09:13,899:utility.py:utility:INFO:Account (id =185) successfully created and assgined to customer (id=100).
+2022-01-30 22:09:13,900:utility.py:utility:INFO:Account: BankAccount(185, 20185, 'checking', 400.0)
+2022-01-30 22:09:13,900:utility.py:utility:INFO:Customer: Customer(100, 'mary', 'kirkland')
+2022-01-30 22:09:47,852:utility.py:utility:INFO:hello
+2022-01-30 22:09:48,574:utility.py:utility:INFO:Account (id =186) successfully created and assgined to customer (id=100).
+2022-01-30 22:09:48,575:utility.py:utility:INFO:	 BankAccount(186, 20186, 'checking', 400.0)
+2022-01-30 22:09:48,575:utility.py:utility:INFO:	 Customer(100, 'mary', 'kirkland')

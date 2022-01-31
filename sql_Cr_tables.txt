@@ -1,6 +1,6 @@
 
 CREATE TABLE  customer(
-   customer_no INT NOT NULL AUTO_INCREMENT,
+   id INT NOT NULL AUTO_INCREMENT,
    name  VARCHAR(60) NOT NULL,
    address VARCHAR(100),
   PRIMARY KEY (customer_no)
@@ -30,7 +30,8 @@ CREATE TABLE  acc_transaction(
    )
 
 -- Bridge table for customer and account
-CREATE TABLE  customer_account
+#CREATE TABLE  customer_account
+CREATE TABLE  a_customer_account
 (
    id INT NOT NULL AUTO_INCREMENT,
    customer_id INT NOT NULL,

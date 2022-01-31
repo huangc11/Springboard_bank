@@ -1,0 +1,357 @@
+%(asime)s:%(filename)s:%(name)s:%(levelname)s:%(message)s
+2022-01-30 21:17:17,494:utility.py:logger_expt:ERROR:Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 227, in save_obj
+    for table, mapper in base_mapper._sorted_tables.items():
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1180, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3288, in _sorted_tables
+    sorted_ = sql_util.sort_tables(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1208, in sort_tables
+    for (t, fkcs) in sort_tables_and_constraints(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1280, in sort_tables_and_constraints
+    filtered = filter_fn(fkc)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1198, in _skip_fn
+    if skip_fn(fk):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3271, in skip
+    dep = table_to_mapper.get(fk.column.table)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1113, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\schema.py", line 2410, in column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:18:11,062:utility.py:logger_expt:ERROR:Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 227, in save_obj
+    for table, mapper in base_mapper._sorted_tables.items():
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1180, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3288, in _sorted_tables
+    sorted_ = sql_util.sort_tables(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1208, in sort_tables
+    for (t, fkcs) in sort_tables_and_constraints(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1280, in sort_tables_and_constraints
+    filtered = filter_fn(fkc)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1198, in _skip_fn
+    if skip_fn(fk):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3271, in skip
+    dep = table_to_mapper.get(fk.column.table)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1113, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\schema.py", line 2410, in column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:31:57,384:utility.py:logger_expt:ERROR:Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 227, in save_obj
+    for table, mapper in base_mapper._sorted_tables.items():
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1180, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3288, in _sorted_tables
+    sorted_ = sql_util.sort_tables(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1208, in sort_tables
+    for (t, fkcs) in sort_tables_and_constraints(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1280, in sort_tables_and_constraints
+    filtered = filter_fn(fkc)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1198, in _skip_fn
+    if skip_fn(fk):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3271, in skip
+    dep = table_to_mapper.get(fk.column.table)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1113, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\schema.py", line 2410, in column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'customer_account.account_id' could not find table 'bankaccount' with which to generate a foreign key to target column 'id'
+2022-01-30 21:33:34,982:utility.py:logger_expt:ERROR:Foreign key associated with column 'customer_account.customer_id' could not find table 'customer' with which to generate a foreign key to target column 'id'
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 227, in save_obj
+    for table, mapper in base_mapper._sorted_tables.items():
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1180, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3288, in _sorted_tables
+    sorted_ = sql_util.sort_tables(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1208, in sort_tables
+    for (t, fkcs) in sort_tables_and_constraints(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1280, in sort_tables_and_constraints
+    filtered = filter_fn(fkc)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\ddl.py", line 1198, in _skip_fn
+    if skip_fn(fk):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\mapper.py", line 3271, in skip
+    dep = table_to_mapper.get(fk.column.table)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 1113, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\schema.py", line 2410, in column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'customer_account.customer_id' could not find table 'customer' with which to generate a foreign key to target column 'id'
+2022-01-30 21:53:25,091:utility.py:logger_expt:ERROR:(pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 100, 'account_id': 175, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 53, 25, 76602)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'bank.ass_customer_account' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.ProgrammingError: (pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 100, 'account_id': 175, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 53, 25, 76602)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-01-30 21:55:31,504:utility.py:logger_expt:ERROR:(pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 101, 'account_id': 104, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 55, 31, 497937)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'bank.ass_customer_account' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.ProgrammingError: (pymysql.err.ProgrammingError) (1146, "Table 'bank.ass_customer_account' doesn't exist")
+[SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
+[parameters: {'customer_id': 101, 'account_id': 104, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 55, 31, 497937)}]
+(Background on this error at: https://sqlalche.me/e/14/f405)

@@ -6,6 +6,8 @@ from sqlalchemy import exc
 
 from sqlalchemy.ext.declarative import declarative_base
 from  database import Database
+from customer import Customer
+import CustomerAccount as m_ca
 Base = declarative_base()
 
 class BankAccount(Base):
@@ -29,8 +31,12 @@ class BankAccount(Base):
         self.cr_date= dt.datetime.today()
 
       #  self.account_type =''
-    def set_account_no(self,p_account_no):
-        self.account_no =p_account_no
+    '''def set_account_no(self,p_account_no):
+        self.account_no =p_account_no'''
+
+    def __repr__(self):
+        return ("BankAccount({id}, {acc_no}, '{acc_type}', {balance})".
+                format(id=self.id, acc_no=self.account_no, acc_type=self.account_type, balance=self.balance))
 
     def withdraw(self, p_amount):
         """ withraw month from this account
@@ -50,15 +56,6 @@ class BankAccount(Base):
         amt = min(self.balance, p_amount)
         self.balance -= amt
         return (amt, self.balance)
-
-    def pr_detail(self):
-        ut.print_one("account info ")
-        print("account_id:{}".format(self.id))
-        print("account_no:{}".format(self.account_no))
-        print("account_type:{}".format(self.account_type))
-        print("balance:{}".format(self.balance))
-        print("date_cr:{}".format(self.cr_date))
-        print("intrst_rate:{}".format(self.intrst_rate))
 
     def deposit(self, p_amount):
         """ deposit money to  this account
@@ -81,82 +78,57 @@ class BankAccount(Base):
 
 
     @staticmethod
+    def get_prefix(p_acc_type='c'):
+        if p_acc_type== 'c' or p_acc_type=='C' :
+            return BankAccount.checking_account_prefix
+        elif p_acc_type=='s' or p_acc_type=='s':
+            return BankAccount.savings_account_prefix
+        else:
+            return 80000
+
+    @staticmethod
     def seek_db_by_account_no(p_account_no):
         """search the account record in database by account_no; return id if succeed
-
           Args:
             p_account_no (str): account_no
 
         Returns:
-            a tuple which could have following values:
-                 (1, the founded bankaccount object)  -- one found
-                 (-1, 'no one found') -- fail
-                 (-2, 'unknown failure') -- fail
+            account object (if found) or None (not found)
         """
-
         try:
             session = Database.get_session()
-
             rec = session.query(BankAccount).\
                 filter(BankAccount.account_no == p_account_no).\
                 one()
+            return rec
 
-            return (1,  rec)
-        except exc.NoResultFound:
-            return (-1, '1.not found')
         except Exception as e:
-            print(e)
-            return (-2, 'unknown failure ')
+            return None
 
+    @staticmethod
+    def seek_db_by_account_id(p_account_id):
+        """search the account record in database by account_id;
+          Args:
+            p_account_no (str): account_id
 
-    def create_account_db(self, c_customer_no=None):
-
-        obj_account = self
-        obj_account.account_no = -1
-        ut.print_one('obj_account')
-        obj_account.pr_detail()
-
-
-        # Get the prefix for generationg account number:  checking - 20000,  savings = 30000
-        if self.account_type== 'checking':
-            tmp_prefix= BankAccount.checking_account_prefix
-        else:
-            tmp_prefix = BankAccount.savings_account_prefix
-
-        #create a record in database
-        result = Database.new_rec_in_db(obj_account)
-
-        # account creation in database succeeds; generate account_no and update database
-        if result[0] > 0:
-            tmp_account_id = result[1]
-            tmp_account_no = tmp_account_id +tmp_prefix
-            obj_account.set_account_no(tmp_account_no)
-
-            try:
-                Database.update_rec_in_db(BankAccount, tmp_account_id, {"account_no": tmp_account_no})
-                ut.print_success("Account has been created")
-                ut.print_success(" The account_no is: {} ".format(tmp_account_no))
-            except Exception as e:
-                ut.print_error("Account creation failed")
-                ut.print_error(e)
-                ut.print_error("")
-
-        elif result[0] == -1:
-            ut.print_error("Account creation failed due to duplicated account_id or account_no")
-        else:
-            ut.print_error("Account Creation failed. Possibly due to database errors")
-
-
-
-
-
-
+        Returns:
+            account object (if found) or None (not found)
+        """
+        try:
+            session = Database.get_session()
+            rec = session.query(BankAccount).\
+                filter(BankAccount.id == p_account_id).\
+                one()
+            return rec
+        except Exception as e:
+            ut.log_exeption(e)
+            return None
 
 class SavingsAccount(BankAccount):
     ''' A class to represent a bank account'''
     max_intrst_rate = 0.02
 
-    def __init__(self, balance, intrst_rate=0):
+    def __init__(self, balance=0, intrst_rate=0):
        BankAccount.__init__(self, balance)
        self.balance = balance
        self.intrst_rate =intrst_rate
@@ -168,7 +140,7 @@ class SavingsAccount(BankAccount):
 class CheckingAccount(BankAccount):
     ''' A class to represent a bank account'''
 
-    def __init__(self, balance):
+    def __init__(self, balance=0):
        BankAccount.__init__(self, balance)
        self.account_type = 'checking'
        self.balance = balance
@@ -177,67 +149,77 @@ class CheckingAccount(BankAccount):
         self.balance += amount
 
 
-'''
-def create_account(acc_type ):
-    def collect_info_for_savings():
-        #c_customer_no = input("Please enter customer_no: ")
-        c_balance = int(input("Please enter balance: "))
-        c_intrst_rate = float(input("Please enter intrst_rate: "))
-
-        if c_intrst_rate > SavingsAccount.max_intrst_rate:
-                c_intrst_rate = SavingsAccount.max_intrst_rate
-
-    def collect_info_for_checking():
-        #c_customer_no = input("Please enter customer_no: ")
-        c_balance = int(input("Please enter balance: "))
-
-    collect_for_savings()
-    o_account = SavingsAccount(c_balance, c_intrst_rate)
-    o_account.set_account_no(2)
-
-
-'''
-
-
-#def create_account(o_account, c_customer_no):
- #   result =Database.new_rec_in_db(o_account)
-  #  ut.print_one(result)
 
 
 
-def create_checking_account():
 
-    #c_customer_no = input("Please enter customer_no: ")
-    c_balance = int(input("Please enter balance: "))
-    c_account = CheckingAccount(c_balance)
-    result = c_account.create_account_db()
+def create_account(p_customer_id, p_account_type, p_balance=0, p_intrs_rate=0.01):
+    """create account
+
+      Args:
+        p_customer_id(int): customer id
+        p_balance(float): balance of the account
+        p_account_type(str):   account type, ['checking', 'savings']
+
+      Returns:
+              Account id, if success
+              None, if failure
+    """
+    o_customer = Customer.f_seek_db_by_id(p_customer_id)
+
+    if o_customer ==None:
+            ut.log_info('account creationng fails -- customer_id {}not found.'.format(p_customer_id))
+            return None
+
+        # Get the prefix for generationg account number:  checking - 20000,  savings = 30000
+    o_account = CheckingAccount(p_balance) if p_account_type == 'c' else SavingsAccount(p_balance,p_intrs_rate)
+
+    #create a record in database
+    new_account = Database.new_rec_in_db(o_account)
+
+        # account creation in database succeeds; generate account_no and update database
+    if new_account == None: #if last step failed
+        ut.log_info('Account creation fails -- save to db failed')
+        return None
+
+    #set account no
+    new_account_no=new_account.id + BankAccount.get_prefix(p_account_type)
 
 
+    result_upd =Database.update_rec_in_db(BankAccount, o_account.id, {"account_no": new_account_no})
 
-'''
-    if result[0] > 0:
+    if result_upd == Database.const_fail:
+        ut.log_info('Account creation failed -- update account_no at DB failed')
+        return None
 
-            #set accout_no = 30000 + account_id
-            new_account_no = BankAccount.checking_account_prefix + result[1]
+    o_cust_acc= m_ca.CustomerAccount(o_customer.id,  o_account.id)
 
+    result_cust_acc = Database.new_rec_in_db(o_cust_acc)
 
-            ut.print_success("account has been created")
-            ut.print_success(" The account id is: {} ".format(result[1]))
+    if result_cust_acc == None:
+        ut.log_info('Account creation failed -- customer-account assignment failed')
+        return None
 
-    elif result[0] == -1:
-            print("%%%%%%%% account with same account_no already exist. Creation failed %%%%%%%% ")
-    else:
-            print("%%%%%%%% Creation failed on%%%%%%%% ")
+    ut.log_info('Account (id ={}) successfully created and assgined to customer (id={}).'
+                .format(o_account.id, o_customer.id))
+    ut.log_info('\t {}'.format(o_account))
+    ut.log_info('\t {}'.format(o_customer))
+    return o_account
 
-'''
 
 
 if __name__ == '__main__':
     Database.initialise()
 
+    new_acc =create_account(100, 'c', 400)
 
-    create_checking_account()
-#    s_account =  SavingsAccount(300)
+
+
+  #  res =create_account(100, 's', 20000, 0.1)
+   # print(res)#    s_account =  SavingsAccount(300)
+
+
+
  #   s_account.set_account_no(3396)
 
 

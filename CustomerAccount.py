@@ -5,39 +5,20 @@ from sqlalchemy.ext.declarative import declarative_base
 from utility import Utility as ut
 from database import Database
 from customer import Customer
-from bankaccount import BankAccount
+import bankaccount as m_ba
 
 Base = declarative_base()
 
-'''
-students_classes_association = Table('students_classes', Base.metadata,
-    Column('student_id', INTEGER, ForeignKey('students.id')),
-    Column('class_id', INTEGER, ForeignKey('classes.id'))
-)
 
-class Student(Base):
-    __tablename__ = 'students'
-    id = Column(Integer, primary_key=True)
-    classes = relationship("Class", secondary=students_classes_association)
-
-class Class(Base):
-    __tablename__ = 'classes'
-    id = Column(Integer, primary_key=True)
-'''
-
-CustomerAccount_association = Table('customer_account1', Base.metadata,
-    Column('customer_id', INTEGER, ForeignKey('customer.id')),
-    Column('account_id', INTEGER, ForeignKey('bankaccount.id'))
-)
 
 class CustomerAccount(Base):
     ''' A class to represent a bank account transaction'''
 
-    __tablename__ = 'customer_account'
+    __tablename__ = 'a_customer_account'
 
     id = Column(INTEGER, primary_key=True)
-    customer_id  = Column(INTEGER, ForeignKey('customer.id'))
-    account_id = Column(INTEGER, ForeignKey('bankaccount.id'))
+    customer_id  = Column(INTEGER)
+    account_id = Column(INTEGER)
     cr_datetime = Column(DATETIME)
 
 
@@ -50,24 +31,36 @@ class CustomerAccount(Base):
     @staticmethod
     def connect_customer_account( customer_id, account_id):
 
-           # search_result = Customer.seek_db_by_id(customer_id)
+            if  Customer.f_seek_db_by_id(customer_id)==None:
+                ut.log_info("Customer-account connection: ({}, {}) failed-- customer_id not found".
+                            format(customer_id, account_id))
+                return None
 
-            record = CustomerAccount_association(customer_id, account_id)
+            if  m_ba.BankAccount.seek_db_by_account_id(account_id)==None:
+                ut.log_info("Customer-account connection: ({}, {}) failed-- account_id not found".
+                            format(customer_id, account_id))
+                return None
+
+            record = CustomerAccount(customer_id, account_id)
 
             db_result= Database.new_rec_in_db(record)
 
+            print( db_result)
+
             # db creaton succeeds
-            if db_result[0]==1:
-                ut.print_success("Customer-account connection created.")
-                ut.print_success("         The id is: {} ".format(db_result[1]))
+            if db_result!=None:
+                msg ="Customer-account connection: ({}, {}) created.".format(customer_id,account_id)
+                print(msg)
+                ut.log_info("Customer-account connection: ({}, {}) created.".format(customer_id,account_id))
 
             # db creaton fails
             else:
-                ut.print_error("Customer-account connection failed.")
+                ut.log_info("Customer-account connection: ({}, {}) failed.".format(customer_id, account_id))
+
 
 if __name__ =="__main__" :
 
     Database.initialise()
-    CustomerAccount.connect_customer_account(customer_id=100,account_id =200 )
+    CustomerAccount.connect_customer_account(customer_id=101,account_id =104)
     #ut.print_success('succ!')
 

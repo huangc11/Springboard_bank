@@ -24,13 +24,10 @@ class Customer(Base):
     __init__(self, name, address='', cust_no=None):
         constructor
 
-    __repr__()
 
     seek_db_by_name_addr(p_name, p_addr=None)
         (staticmethod) seek customer record in database by name and address.
 
-    list_customer(self)
-        (staticmethod) print records in customer table
 
     """
 
@@ -44,113 +41,86 @@ class Customer(Base):
     def __init__(self, name, address=''):
         self.name, self.address = name, address
 
-
-    @classmethod
-    def list_customer(self):
-         session = Database.get_session()
-         for customer in session.query(Customer):
-            print(customer)
-
     def __repr__(self):
       return ("Customer({id}, '{name}', '{address}')".format(id=self.id, name=self.name, address=self.address))
 
     @staticmethod
-    def seek_db_by_name_addr(p_name, p_addr=None):
+    def f_customer_not_exist(p_name, p_addr=None):
         """search  customer in database by name and address
-
           Args:
             p_name (str): customer name
             p_addr (str): customer address
 
         Returns:
-            a tuple which could have following values:
-                 (1, id)   -- single result found
-                 (2, 'mulitple results  found')  -- multiple results found
-                 (-1, 'no one found') -- no one found
-                 (-2, 'action fails due to low level issue') --failure
+            result(boolean)
         """
 
         try:
             session = Database.get_session()
-            rec = session.query(Customer). \
-                filter(Customer.name == p_name). \
-                filter(or_(Customer.address == p_addr,
-                           p_addr == None)). \
-                one()
-
-            return (1, rec.id)
-        except MultipleResultsFound:
-            return (2, '2. multiple results found')
+            rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+                           p_addr == None)).one()
+            return False
         except NoResultFound:
-            return (-1, '1.not found')
+            return True
         except Exception as e:
-            ut.print_error(e)
-            return (-2, 'Seeking customer in DB failed')
-
+            ut.log_exeption(e)
+            return False
 
     @staticmethod
-    def seek_db_by_id(p_id):
+    def f_seek_db_by_id(p_id):
         """search  customer in database by name and address
           Args:
             p_id (int): customer id
 
         Returns:
-            a tuple which could have following values:
-                 (1, id)   -- single result found
-                 (-2, 'action fails due to low level issue') --failure
+            customer object (if found) or None (not found)
         """
-
         try:
             session = Database.get_session()
             rec = session.query(Customer).filter(Customer.id == p_id).one()
-            return (1, rec.id)
-        except MultipleResultsFound:
-            return (2, 'multiple results found')
+            return rec
         except Exception as e:
-            ut.print_error(e)
-            return (-1, 'not found or error out')
+            return None
 
 
-def create_customer():
+def create_customer(p_name, p_addr):
+    """create customer and save to database
 
-    name = input("Please enter the new customer's name: ")
-    addr = input("Please enter the new customer's address: ")
-   # option = input("Please confirm save or not: s for save, otherwise cancel: ")
-   # option = input("Please confirm: S -- save M -- modify "
+      Args:
+        p_name
+        p_addr( (Database object):
 
-    seek_result = Customer.seek_db_by_name_addr(name, addr)
+      Returns:
+              True, if success
+              False, if failure
+    """
+    # check if customer with same name and address existing
+    b_c_not_exist = Customer.f_customer_not_exist(p_name, p_addr)
 
-    # if not found, create in database
-    if  seek_result[0] == -1:
+    if  b_c_not_exist:  #if not exist
 
-            customer = Customer(name, addr)
-            db_result= Database.new_rec_in_db(customer)
+            customer = Customer(p_name, p_addr)
+            new_customer= Database.new_rec_in_db(customer)
 
             # db creaton succeeds
-            if db_result[0]==1:
-                print("%%%%%%%% customer has been created %%%%%%%% ")
-                print("         The customer id is: {} ".format(db_result[1]))
-
+            if new_customer!=None:
+                ut.print_success('customer has been created')
+                ut.print_success(new_customer.id)
+                print(new_customer)
+                return new_customer
             # db creaton fails
             else:
-                ut.print_error("####### Creation failed due to errors ########")
-
-
-    #if one ore more result found, aborted
-    elif ( seek_result[0]>0):
-          ut.print_error( 'Customer(s) with same name and address exist(s). Creation failed.')
+                return None
 
     #  seeking fails, creaton aborts
     else:
-           print("####### Creation failed due to errors ########")
-
+           return False
 
 
 
 
 if __name__ == '__main__':
     Database.initialise()
-   # create_customer()
-    #Customer.list_customer()
-    print(Customer.seek_db_by_id(189))
+    res=create_customer('fei', 'kirkland')
+    print(res)
 
