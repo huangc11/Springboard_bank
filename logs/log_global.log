@@ -63,3 +63,34 @@ sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'custo
 2022-01-30 22:09:48,574:utility.py:utility:INFO:Account (id =186) successfully created and assgined to customer (id=100).
 2022-01-30 22:09:48,575:utility.py:utility:INFO:	 BankAccount(186, 20186, 'checking', 400.0)
 2022-01-30 22:09:48,575:utility.py:utility:INFO:	 Customer(100, 'mary', 'kirkland')
+2022-01-31 08:48:12,829:utility.py:utility:INFO:hello
+2022-01-31 08:48:13,299:utility.py:utility:INFO:Account (id =189) successfully created and assgined to customer (id=100).
+2022-01-31 08:48:13,299:utility.py:utility:INFO:	 BankAccount(189, 20189, 'checking', 400.0)
+2022-01-31 08:48:13,302:utility.py:utility:INFO:	 Customer(100, 'mary', 'kirkland')
+2022-01-31 08:48:35,454:utility.py:utility:INFO:hello
+2022-01-31 08:48:35,918:utility.py:utility:INFO:Account (id =190) successfully created and assgined to customer (id=100).
+2022-01-31 08:48:35,918:utility.py:utility:INFO:	 BankAccount(190, 20190, 'checking', 400.0)
+2022-01-31 08:48:35,918:utility.py:utility:INFO:	 Customer(100, 'mary', 'kirkland')
+2022-01-31 08:48:55,755:utility.py:utility:INFO:hello
+2022-01-31 08:48:56,213:utility.py:utility:INFO:Account (id =191) successfully created and assgined to customer (id=100).
+2022-01-31 08:48:56,214:utility.py:utility:INFO:	 BankAccount(191, 20191, 'checking', 400.0)
+2022-01-31 08:48:56,214:utility.py:utility:INFO:	 Customer(100, 'mary', 'kirkland')
+2022-01-31 08:49:05,222:utility.py:utility:INFO:hello
+2022-01-31 08:49:05,334:utility.py:utility:INFO:found the account
+2022-01-31 08:49:05,354:utility.py:utility:INFO:Withdraw transaction succeeded
+2022-01-31 08:49:05,356:utility.py:utility:INFO:Transaction id: 20172; amount withdrawn: 10 account balance: 320.0 
+2022-01-31 08:49:05,356:utility.py:utility:INFO:Withdraw transaction succeeded
+2022-01-31 08:51:40,278:utility.py:utility:INFO:hello
+2022-01-31 10:35:29,280:utility.py:utility:INFO:hello
+2022-01-31 10:36:39,261:utility.py:utility:INFO:hello
+2022-01-31 10:36:58,997:utility.py:utility:INFO:hello
+2022-01-31 10:38:20,167:utility.py:utility:INFO:hello
+2022-01-31 10:45:18,964:utility.py:utility:INFO:hello
+2022-01-31 10:45:54,372:utility.py:utility:INFO:hello
+2022-01-31 10:47:39,722:utility.py:utility:INFO:hello
+2022-01-31 10:47:50,758:utility.py:utility:INFO:hello
+2022-01-31 10:50:37,416:utility.py:utility:INFO:hello
+2022-01-31 10:51:27,313:utility.py:utility:INFO:hello
+2022-01-31 12:14:55,115:utility.py:utility:INFO:hello
+2022-01-31 12:14:55,491:acctransaction.py:utility:INFO:Deposit transaction succeeded
+2022-01-31 12:14:55,495:acctransaction.py:utility:INFO:Transaction id: 42; amount deposited: 25.0; account balance: 545.0 

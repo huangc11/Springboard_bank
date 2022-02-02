@@ -355,3 +355,5 @@ sqlalchemy.exc.ProgrammingError: (pymysql.err.ProgrammingError) (1146, "Table 'b
 [SQL: INSERT INTO ass_customer_account (customer_id, account_id, cr_datetime) VALUES (%(customer_id)s, %(account_id)s, %(cr_datetime)s)]
 [parameters: {'customer_id': 101, 'account_id': 104, 'cr_datetime': datetime.datetime(2022, 1, 30, 21, 55, 31, 497937)}]
 (Background on this error at: https://sqlalche.me/e/14/f405)
+2022-01-31 08:22:22,128:utility.py:logger_app:INFO:hello!
+2022-01-31 08:22:43,560:utility.py:logger_app:INFO:hello!

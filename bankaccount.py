@@ -87,7 +87,7 @@ class BankAccount(Base):
             return 80000
 
     @staticmethod
-    def seek_db_by_account_no(p_account_no):
+    def get_by_account_no(p_account_no):
         """search the account record in database by account_no; return id if succeed
           Args:
             p_account_no (str): account_no
@@ -106,7 +106,7 @@ class BankAccount(Base):
             return None
 
     @staticmethod
-    def seek_db_by_account_id(p_account_id):
+    def get_by_account_id(p_account_id):
         """search the account record in database by account_id;
           Args:
             p_account_no (str): account_id
@@ -184,8 +184,6 @@ def create_account(p_customer_id, p_account_type, p_balance=0, p_intrs_rate=0.01
 
     #set account no
     new_account_no=new_account.id + BankAccount.get_prefix(p_account_type)
-
-
     result_upd =Database.update_rec_in_db(BankAccount, o_account.id, {"account_no": new_account_no})
 
     if result_upd == Database.const_fail:
@@ -208,18 +206,13 @@ def create_account(p_customer_id, p_account_type, p_balance=0, p_intrs_rate=0.01
 
 
 
+
+
 if __name__ == '__main__':
     Database.initialise()
 
     new_acc =create_account(100, 'c', 400)
 
 
-
-  #  res =create_account(100, 's', 20000, 0.1)
-   # print(res)#    s_account =  SavingsAccount(300)
-
-
-
- #   s_account.set_account_no(3396)
 
 

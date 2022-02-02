@@ -2,9 +2,12 @@ import datetime as dt
 from sqlalchemy import Column,  INTEGER, VARCHAR, FLOAT, DATE, or_
 from sqlalchemy.ext.declarative import declarative_base
 
-from utility import Utility as ut
 from database import Database
 from bankaccount import BankAccount
+
+from utility import Utility as ut
+from utility import glb_logger
+
 
 Base = declarative_base()
 
@@ -25,80 +28,71 @@ class AccountTransaction(Base):
         self.amount=amount
         self.cr_date= dt.datetime.today()
 
-def withdraw_from_account():
-
-    ut.print_one('Withdrawal Transaction')
-    c_account_no = input("Please enter account_no: ")
-    c_amount = int(input("Please enter amount to withdraw: "))
-    c_account_type ="withdraw"
-
-    seek_result = BankAccount.seek_db_by_account_no(c_account_no)
+def log_app_info(msg):
+    #ut.logger_app.info(msg)
+    glb_logger.info(msg)
 
 
-    #if record with specified account_no not found, abort
-    if seek_result[0] == -1:
-        ut.print_error("Account with this account_no was not found. Transaction failed.")
+def withdraw_from_account(p_account_no, p_amount):
 
-    # if record with specified account_no found, proceed
-    elif seek_result[0] == 1:
-        o_account = seek_result[1]
-        withdraw_result = o_account.withdraw(c_amount)
-        transaction =AccountTransaction(account_no=c_account_no, type='withdraw', amount=withdraw_result[0])
-        db_result = Database.new_rec_in_db(transaction)
+    o_account = BankAccount.get_by_account_no(p_account_no)
+
+    #if account not found
+    if o_account == None:
+        ut.logger_app.info("Withdrawal transaction failed -- account not found.")
+
+    # Withdraw from the account: get the actual amount withdrawn and new balance
+    amount_withdraw = o_account.withdraw(p_amount)
+    #Create the transasction record
+
+    transaction =AccountTransaction(account_no=p_account_no, type='withdraw', amount=amount_withdraw[0])
+    new_trans = Database.new_rec_in_db(transaction)
+
+    #if new transsation  in database failed
+    if new_trans == None:
+        log_app_info('Withdraw transaction failed -- can not create transaction record')
+        return None
+
+    #new transsation in database succeed
+    log_app_info('Withdraw transaction succeeded')
+    log_app_info("Transaction id: {}; amount withdrawn: {} account balance: {} ".\
+                             format(new_trans.account_no, amount_withdraw[0], amount_withdraw[1]))
+
+    return new_trans
+
+
+
+def deposit_to_account(p_account_no, p_amount):
+
+    o_account = BankAccount.get_by_account_no(p_account_no)
+
+    # if account not found
+    if o_account == None:
+        ut.logger_app.info("Deposit transaction failed -- account not found.")
+
+    deposit_result =o_account.deposit(p_amount)
+
+    new_trans = AccountTransaction(account_no=p_account_no, type='deposit', amount=p_amount)
+    db_result = Database.new_rec_in_db(new_trans)
+
+    if new_trans == None:
+        log_app_info('Deposit transaction failed -- can not create transaction record')
+        return None
+
+        # new transsation in database succeed
+    log_app_info('Deposit transaction succeeded')
+    log_app_info("Transaction id: {}; amount deposited: {}; account balance: {} ".\
+                                 format(new_trans.id, new_trans.amount, deposit_result[1]))
+
+    return new_trans
 
         # db creaton succeeds
-        if  db_result[0] == 1:
-            ut.print_success("Transaction succeeded")
-            ut.print_success("Transaction id: {}; amount withdrawn: {} account balance: {} ".\
-                             format(db_result[1], withdraw_result[0], withdraw_result[1]))
 
-        # db creaton fails
-        else:
-            ut.print_error("Transaction failed, possibly due to database errors. ")
-
-    # if search failed abort
-    else:
-            ut.print_error("Transaction failed.")
-
-def deposit_to_account():
-        ut.print_one('Deposit Transaction')
-        c_account_no = input("Please enter account_no: ")
-        c_amount = int(input("Please enter amount to deposit: "))
-        c_account_type = "deposit"
-
-        seek_result = BankAccount.seek_db_by_account_no(c_account_no)
-
-        # if record with specified account_no not found, abort
-        if seek_result[0] == -1:
-            ut.print_error("Account with this account_no was not found. Transaction failed.")
-
-        # if record with specified account_no found, proceed
-        elif seek_result[0] == 1:
-            o_account = seek_result[1]
-            deposit_result =o_account.deposit(c_amount)
-            ut.print_one(deposit_result)
-
-            transaction = AccountTransaction(account_no=c_account_no, type='deposit', amount=c_amount)
-            db_result = Database.new_rec_in_db(transaction)
-
-            # db creaton succeeds
-            if db_result[0] == 1:
-                ut.print_success("Transaction succeeded")
-                ut.print_success("Transaction id: {}; amount deposited: {}; account balance: {} ".\
-                                 format(db_result[1], transaction.amount, deposit_result[1]))
-
-            # db creaton fails
-            else:
-                ut.print_error("Transaction failed, possibly due to database errors. ")
-
-        # if search failed abort
-        else:
-            ut.print_error("Transaction failed.")
 
 
 if __name__ =="__main__" :
 
     Database.initialise()
-
-    withdraw_from_account()
+    deposit_to_account(20172, 25)
+    #print(result)
     #deposit_to_account()
