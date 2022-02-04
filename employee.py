@@ -3,6 +3,7 @@ from sqlalchemy import Column,  INTEGER, VARCHAR, FLOAT, DATETIME, or_
 from sqlalchemy.ext.declarative import declarative_base
 
 from utility import Utility as ut
+from sequence import Sequence as Seq
 from database import Database
 
 
@@ -15,47 +16,40 @@ class Employee(Base):
 
     id = Column(INTEGER, primary_key=True)
     name  = Column(VARCHAR(60))
-    level = Column(VARCHAR(20))
-    project = Column(VARCHAR(100))
+    login = Column(VARCHAR(20))
+    password = Column(VARCHAR(20))
 
-    def __init__(self, name , level='employee', project=None):
+    def __init__(self, name):
         self.name=name
-        self.level = level
-        self.project= project
 
-    @staticmethod
-    def new_employee_at_db( name, level='employee', project=None):
+        tmpseq = Seq.next()
+        self.login = 'a'+str(tmpseq).rjust(4,'0')
+        self.password = str(tmpseq)
 
-            employee = Employee(name, level,project)
+    def __repr__(self):
+        return("Employee(id={},name='{}',login='{}', password='{}')".format(self.id, self.name, self.login,self.password))
+        #return ("Employee({id}, '{name}', '{login}'".format(self.id, self.name, self.login))
 
-            db_result= Database.new_rec_in_db(employee)
+    def insert_into_db(self):
+
+
+            new_emp= Database.new_rec_in_db(self)
 
             # db creaton succeeds
-            if db_result[0]==1:
-                ut.print_success("The employee has been created.")
-                ut.print_success("The id is: {} ".format(db_result[1]))
+            if new_emp!=None:
+                ut.log_info("The employee has been created.")
+                ut.log_info(self)
+                return new_emp
 
-            # db creaton fails
-            else:
-                ut.print_error("Employee creation has failed.")
+            ut.log_info("The employee creation faild.")
 
-
-class Manager(Employee):
-    def __init__(self, name, level='mananger', project='unknown'):
-       Employee.__init__(self, name, level)
-       self.project = project
-
-    @staticmethod
-    def new_manager_at_db( name, level='manager', project='Mis'):
-        Employee.new_employee_at_db(name, level, project)
-
-
+            return None
 
 
 if __name__ =="__main__" :
 
     Database.initialise()
-    #Employee.create_employee_db('Jerry')
-    Manager.new_manager_at_db('Tom')
-    #ut.print_success('succ!')
 
+    emp =Employee('tom')
+    emp.insert_into_db()
+    print(emp)

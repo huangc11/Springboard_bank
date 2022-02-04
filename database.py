@@ -12,24 +12,23 @@ class Database:
     __engine = None
     const_success = 1
     const_fail = -1
-    #session =None
+
 
     def __init__(self):
+        pass
         #"mysql+pymysql://chu:tree@localhost:3306/bank"
 
-        engine = create_engine(Database.__db_url, echo=False)
-        Session = sessionmaker(bind=engine)
-        self.session = Session()
-        self.engine = engine
-
-    def get_session2():
-        return self.session
+     #   engine = create_engine(Database.__db_url, echo=False)
+      #  Session = sessionmaker(bind=engine)
+       #self.session = Session()
+      #  self.engine = engine
 
     def print_session(self):
         print("%%%%%%% session:{} %%%%%%%%".format(self.session))
 
     @staticmethod
     def initialise(**kwargs):
+        '''Connect to database and create session'''
         db_url = "mysql+pymysql://chu:tree@localhost:3306/bank"
         #db_url = "mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
         engine = create_engine(db_url, echo=False)
@@ -95,11 +94,14 @@ class Database:
             except Exception as e:
                     #if fail
                     ut.log_exeption(e)
+                    ut.log_info(e)
                     return None
 
 
+if Database.get_session()==None:
+   Database.initialise()
 
-if __name__ == '__main__':
-    pass
+
+
 
 

@@ -38,6 +38,8 @@ class Utility:
 
 
 
+
+
 def setup_logger(name, log_file, level=logging.INFO, format=format_def):
             """To setup as many loggers as you want"""
 
@@ -55,6 +57,5 @@ def setup_logger(name, log_file, level=logging.INFO, format=format_def):
 
 
 Utility.logger_excption = setup_logger('logger_expt', 'logs\log_excepion.log')
-glb_logger.info('hello')
 
 Utility.logger_app = setup_logger('logger_app', 'logs\log_app.log')

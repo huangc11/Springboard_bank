@@ -357,3 +357,1225 @@ sqlalchemy.exc.ProgrammingError: (pymysql.err.ProgrammingError) (1146, "Table 'b
 (Background on this error at: https://sqlalche.me/e/14/f405)
 2022-01-31 08:22:22,128:utility.py:logger_app:INFO:hello!
 2022-01-31 08:22:43,560:utility.py:logger_app:INFO:hello!
+2022-02-01 16:24:14,389:utility.py:logger_expt:ERROR:(pymysql.err.DataError) (1366, "Incorrect integer value: 'c' for column 'balance' at row 1")
+[SQL: INSERT INTO bankaccount (account_no, account_type, balance, intrst_rate, cr_date) VALUES (%(account_no)s, %(account_type)s, %(balance)s, %(intrst_rate)s, %(cr_date)s)]
+[parameters: {'account_no': None, 'account_type': 'savings', 'balance': 'c', 'intrst_rate': 400, 'cr_date': datetime.datetime(2022, 2, 1, 16, 24, 14, 112039)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.DataError: (1366, "Incorrect integer value: 'c' for column 'balance' at row 1")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.DataError: (pymysql.err.DataError) (1366, "Incorrect integer value: 'c' for column 'balance' at row 1")
+[SQL: INSERT INTO bankaccount (account_no, account_type, balance, intrst_rate, cr_date) VALUES (%(account_no)s, %(account_type)s, %(balance)s, %(intrst_rate)s, %(cr_date)s)]
+[parameters: {'account_no': None, 'account_type': 'savings', 'balance': 'c', 'intrst_rate': 400, 'cr_date': datetime.datetime(2022, 2, 1, 16, 24, 14, 112039)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+2022-02-01 21:10:22,405:utility.py:logger_expt:ERROR:'Query' object has no attribute 'filteryBy'
+Traceback (most recent call last):
+  File "C:/Users/huang/OneDrive/14-code/bank/bankaccount.py", line 93, in get_max_account_no
+    max_no = session.query(func.max(BankAccount.account_no)).filteryBy(BankAccount.account_type=='checking')
+AttributeError: 'Query' object has no attribute 'filteryBy'
+2022-02-01 21:10:46,562:utility.py:logger_expt:ERROR:'Query' object has no attribute 'filteryBy'
+Traceback (most recent call last):
+  File "C:/Users/huang/OneDrive/14-code/bank/bankaccount.py", line 93, in get_max_account_no
+    max_no = session.query(func.max(BankAccount.account_no)).filteryBy(BankAccount.account_type=='savings')
+AttributeError: 'Query' object has no attribute 'filteryBy'
+2022-02-01 21:19:08,420:utility.py:logger_expt:ERROR:'Query' object has no attribute 'filteryBy'
+Traceback (most recent call last):
+  File "C:/Users/huang/OneDrive/14-code/bank/bankaccount.py", line 93, in get_max_account_no
+    max_no = session.query(func.max(BankAccount.account_no)).filteryBy(BankAccount.account_no<30000).scalar()
+AttributeError: 'Query' object has no attribute 'filteryBy'
+2022-02-01 21:22:06,004:utility.py:logger_expt:ERROR:'>' not supported between instances of 'DeclarativeMeta' and 'int'
+Traceback (most recent call last):
+  File "C:/Users/huang/OneDrive/14-code/bank/bankaccount.py", line 93, in get_max_account_no
+    max_no = session.query(func.max(BankAccount.account_no)).filter(BankAccount>20000).scalar()
+TypeError: '>' not supported between instances of 'DeclarativeMeta' and 'int'
+2022-02-02 06:50:45,388:utility.py:logger_expt:ERROR:(pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1096, in _emit_insert_statements
+    c = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-02-02 06:55:39,656:utility.py:logger_expt:ERROR:(pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1096, in _emit_insert_statements
+    c = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-02-02 06:57:53,579:utility.py:logger_expt:ERROR:(pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 90, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1096, in _emit_insert_statements
+    c = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry '1' for key 'sequence.PRIMARY'")
+[SQL: INSERT INTO sequence (id) VALUES (%(id)s)]
+[parameters: {'id': 1}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-02-02 07:17:40,449:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:17:40,464:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:18:50,446:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:18:50,462:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:18:50,462:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:18:50,478:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:19:04,581:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:19:04,597:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:19:04,613:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:19:04,613:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:20:44,937:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:20:44,953:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:20:44,968:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:20:44,984:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:32:18,955:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:32:18,955:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:32:18,970:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:32:18,970:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:33:07,771:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:33:07,787:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:33:07,803:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:33:07,803:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:34:03,533:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:34:03,549:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:34:03,549:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:34:03,564:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:35:48,687:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 113, in get_by_account_no
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:35:48,687:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 132, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 07:35:48,703:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 07:35:48,703:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 60, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 10:01:12,626:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 128, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 10:02:17,966:utility.py:logger_expt:ERROR:No row was found when one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\bankaccount.py", line 128, in get_by_account_id
+    rec = session.query(BankAccount).\
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 569, in _only_one_row
+    raise exc.NoResultFound(
+sqlalchemy.exc.NoResultFound: No row was found when one was required
+2022-02-02 14:39:20,027:utility.py:logger_expt:ERROR:(pymysql.err.OperationalError) (1054, "Unknown column 'level' in 'field list'")
+[SQL: INSERT INTO employee (name, level, project) VALUES (%(name)s, %(level)s, %(project)s)]
+[parameters: {'name': 'tom', 'level': None, 'project': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'level' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 89, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'level' in 'field list'")
+[SQL: INSERT INTO employee (name, level, project) VALUES (%(name)s, %(level)s, %(project)s)]
+[parameters: {'name': 'tom', 'level': None, 'project': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-02 14:39:40,962:utility.py:logger_expt:ERROR:(pymysql.err.OperationalError) (1054, "Unknown column 'level' in 'field list'")
+[SQL: INSERT INTO employee (name, level, project) VALUES (%(name)s, %(level)s, %(project)s)]
+[parameters: {'name': 'tom', 'level': None, 'project': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'level' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 89, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'level' in 'field list'")
+[SQL: INSERT INTO employee (name, level, project) VALUES (%(name)s, %(level)s, %(project)s)]
+[parameters: {'name': 'tom', 'level': None, 'project': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-02 14:55:43,341:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 50, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 14:55:43,357:utility.py:logger_expt:ERROR:Multiple rows were found when exactly one was required
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\customer.py", line 50, in f_customer_not_exist
+    rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\query.py", line 2782, in one
+    return self._iter().one()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 1380, in one
+    return self._only_one_row(True, True, False)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\result.py", line 620, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2022-02-02 18:24:08,628:utility.py:logger_expt:ERROR:(pymysql.err.OperationalError) (1364, "Field 'ticket_id' doesn't have a default value")
+[SQL: INSERT INTO ticket_sale (trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'trans_date': None, 'event_id': None, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': None, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'ticket_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 89, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1364, "Field 'ticket_id' doesn't have a default value")
+[SQL: INSERT INTO ticket_sale (trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'trans_date': None, 'event_id': None, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': None, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-02 18:26:38,596:utility.py:logger_expt:ERROR:(pymysql.err.OperationalError) (1364, "Field 'ticket_id' doesn't have a default value")
+[SQL: INSERT INTO ticket_sale (trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'trans_date': None, 'event_id': None, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': None, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'ticket_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 89, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1364, "Field 'ticket_id' doesn't have a default value")
+[SQL: INSERT INTO ticket_sale (trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'trans_date': None, 'event_id': None, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': None, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-03 06:21:19,298:utility.py:logger_expt:ERROR:(pymysql.err.IntegrityError) (1062, "Duplicate entry '3' for key 'ticket_sale.PRIMARY'")
+[SQL: INSERT INTO ticket_sale (ticket_id, trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(ticket_id)s, %(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'ticket_id': 3, 'trans_date': None, 'event_id': 39, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': 300, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry '3' for key 'ticket_sale.PRIMARY'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\huang\OneDrive\14-code\bank\database.py", line 89, in new_rec_in_db
+    session.commit()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3345, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3485, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\session.py", line 3445, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\orm\persistence.py", line 1096, in _emit_insert_statements
+    c = connection._execute_20(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\sql\elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\sqlalchemy\engine\default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\envs\bank\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry '3' for key 'ticket_sale.PRIMARY'")
+[SQL: INSERT INTO ticket_sale (ticket_id, trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(ticket_id)s, %(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
+[parameters: {'ticket_id': 3, 'trans_date': None, 'event_id': 39, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': 300, 'num_tickets': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)

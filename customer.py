@@ -19,16 +19,6 @@ class Customer(Base):
     address (str):       name of the customer
     customer_no (str):  customer_no of the customer.
 
-    Methods
-    -------
-    __init__(self, name, address='', cust_no=None):
-        constructor
-
-
-    seek_db_by_name_addr(p_name, p_addr=None)
-        (staticmethod) seek customer record in database by name and address.
-
-
     """
 
     __tablename__ = 'customer'
@@ -75,11 +65,13 @@ class Customer(Base):
         Returns:
             customer object (if found) or None (not found)
         """
+        ut.logger_app.info(p_id)
         try:
             session = Database.get_session()
             rec = session.query(Customer).filter(Customer.id == p_id).one()
             return rec
         except Exception as e:
+            ut.logger_app.info(e)
             return None
 
 

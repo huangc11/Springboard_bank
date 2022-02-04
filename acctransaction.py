@@ -6,7 +6,6 @@ from database import Database
 from bankaccount import BankAccount
 
 from utility import Utility as ut
-from utility import glb_logger
 
 
 Base = declarative_base()
@@ -28,63 +27,29 @@ class AccountTransaction(Base):
         self.amount=amount
         self.cr_date= dt.datetime.today()
 
-def log_app_info(msg):
-    #ut.logger_app.info(msg)
-    glb_logger.info(msg)
+        def deposit_to_account(p_account_no, p_amount):
 
+            o_account = BankAccount.get_by_account_no(p_account_no)
 
-def withdraw_from_account(p_account_no, p_amount):
+            # if account not found
+            if o_account == None:
+                ut.logger_app.info("Deposit transaction failed -- account not found.")
 
-    o_account = BankAccount.get_by_account_no(p_account_no)
+            deposit_result = o_account.deposit(p_amount)
 
-    #if account not found
-    if o_account == None:
-        ut.logger_app.info("Withdrawal transaction failed -- account not found.")
+            new_trans = AccountTransaction(account_no=p_account_no, type='deposit', amount=p_amount)
+            db_result = Database.new_rec_in_db(new_trans)
 
-    # Withdraw from the account: get the actual amount withdrawn and new balance
-    amount_withdraw = o_account.withdraw(p_amount)
-    #Create the transasction record
+            if new_trans == None:
+                log_app_info('Deposit transaction failed -- can not create transaction record')
+                return None
 
-    transaction =AccountTransaction(account_no=p_account_no, type='withdraw', amount=amount_withdraw[0])
-    new_trans = Database.new_rec_in_db(transaction)
+                # new transsation in database succeed
+            log_app_info('Deposit transaction succeeded')
+            log_app_info("Transaction id: {}; amount deposited: {}; account balance: {} ". \
+                         format(new_trans.id, new_trans.amount, deposit_result[1]))
 
-    #if new transsation  in database failed
-    if new_trans == None:
-        log_app_info('Withdraw transaction failed -- can not create transaction record')
-        return None
-
-    #new transsation in database succeed
-    log_app_info('Withdraw transaction succeeded')
-    log_app_info("Transaction id: {}; amount withdrawn: {} account balance: {} ".\
-                             format(new_trans.account_no, amount_withdraw[0], amount_withdraw[1]))
-
-    return new_trans
-
-
-
-def deposit_to_account(p_account_no, p_amount):
-
-    o_account = BankAccount.get_by_account_no(p_account_no)
-
-    # if account not found
-    if o_account == None:
-        ut.logger_app.info("Deposit transaction failed -- account not found.")
-
-    deposit_result =o_account.deposit(p_amount)
-
-    new_trans = AccountTransaction(account_no=p_account_no, type='deposit', amount=p_amount)
-    db_result = Database.new_rec_in_db(new_trans)
-
-    if new_trans == None:
-        log_app_info('Deposit transaction failed -- can not create transaction record')
-        return None
-
-        # new transsation in database succeed
-    log_app_info('Deposit transaction succeeded')
-    log_app_info("Transaction id: {}; amount deposited: {}; account balance: {} ".\
-                                 format(new_trans.id, new_trans.amount, deposit_result[1]))
-
-    return new_trans
+            return new_trans
 
         # db creaton succeeds
 
