@@ -1,14 +1,17 @@
+--DROP TABLE  customer;
 
 CREATE TABLE  customer(
    id INT NOT NULL AUTO_INCREMENT,
    name  VARCHAR(60) NOT NULL,
    address VARCHAR(100),
-  PRIMARY KEY (customer_no)
+  PRIMARY KEY (id)
 )
 ;
 
 -- table for bankaccount
 
+
+-- drop table bankacount
 CREATE TABLE  bankaccount(
    account_id INT NOT NULL AUTO_INCREMENT,
    account_no INT NOT NULL UNIQUE ,
@@ -18,7 +21,7 @@ CREATE TABLE  bankaccount(
    cr_date  DATE,
    PRIMARY KEY (account_id)
    )
-
+;
 
 CREATE TABLE  acc_transaction(
    id INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +34,8 @@ CREATE TABLE  acc_transaction(
 
 -- Bridge table for customer and account
 #CREATE TABLE  customer_account
-CREATE TABLE  a_customer_account
+#DROP TABLE  ass_customer_account;
+CREATE TABLE  ass_customer_account
 (
    id INT NOT NULL AUTO_INCREMENT,
    customer_id INT NOT NULL,
@@ -44,9 +48,9 @@ CREATE TABLE  a_customer_account
 CREATE TABLE  employee
 (
    id INT NOT NULL AUTO_INCREMENT,
-   name VARCHAR(50),
+   name VARCHAR(60),
    login VARCHAR(20),
-   password VARCHAR(20),
+   password INTEGER,
    PRIMARY KEY (id)
 )
 ;
@@ -67,3 +71,35 @@ CREATE TABLE  sequence
    note VARCHAR(30),
    PRIMARY KEY (id)
 )
+
+
+create table creditcard
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   card_no INT,
+   bank_name VARCHAR(60),
+   exp_date DATE,
+   customer_id INT,
+   cardholder_name VARCHAR(60),
+   credit_limit DECIMAL,
+   employee_id INT,
+   cr_date  DATE,
+   PRIMARY KEY (id)
+)
+;
+
+drop table card_application;
+
+create table card_application
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   customer_id INT,
+   status VARCHAR(30),
+   note VARCHAR(100),
+   apply_date DATE,
+   apprv_date  DATE,
+   employee_id INT,
+   card_id  INT,
+   PRIMARY KEY (id)
+)
+;

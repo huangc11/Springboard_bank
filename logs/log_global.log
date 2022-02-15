@@ -290,3 +290,331 @@ sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'custo
 [SQL: INSERT INTO ticket_sale (ticket_id, trans_date, event_id, event_name, event_date, event_type, event_city, customer_id, price, num_tickets) VALUES (%(ticket_id)s, %(trans_date)s, %(event_id)s, %(event_name)s, %(event_date)s, %(event_type)s, %(event_city)s, %(customer_id)s, %(price)s, %(num_tickets)s)]
 [parameters: {'ticket_id': 3, 'trans_date': None, 'event_id': 39, 'event_name': None, 'event_date': None, 'event_type': None, 'event_city': None, 'customer_id': None, 'price': 300, 'num_tickets': None}]
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-02-04 16:25:38,477:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 16:25:47,783:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 16:26:46,687:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 16:57:29,859:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 16:57:38,889:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 17:01:37,709:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-04 17:36:41,010:utility.py:utility:INFO:Account (id =214) successfully created and assgined to customer (id=101).
+2022-02-04 17:36:41,010:utility.py:utility:INFO:	 BankAccount(id=214, account_no=20561, account_type='checking', balance=3000.0)
+2022-02-04 17:36:41,010:utility.py:utility:INFO:	 Customer(101, 'tom', '4B Blue Ridge Blvd, Brighton, MI')
+2022-02-04 17:38:23,486:utility.py:utility:INFO:account creation failed -- customer with id=811 not found.
+2022-02-04 17:38:44,346:utility.py:utility:INFO:account creation failed -- customer with id=811 not found.
+2022-02-04 17:40:00,044:utility.py:utility:INFO:account creation failed -- customer with id=811 not found.
+2022-02-04 17:40:09,753:utility.py:utility:INFO:account creation failed -- customer with id=811 not found.
+2022-02-04 17:40:19,436:utility.py:utility:INFO:account creation failed, account type "p_account_type unknown"
+2022-02-04 17:41:33,003:utility.py:utility:INFO:account creation failed, account type "p_account_type unknown"
+2022-02-04 17:41:59,866:utility.py:utility:INFO:account creation failed, account type "x unknown"
+2022-02-04 18:04:34,397:utility.py:utility:INFO:Account (id =216) successfully created and assgined to customer (id=101).
+2022-02-04 18:04:34,397:utility.py:utility:INFO:	 BankAccount(id=216, account_no=20563, account_type='checking', balance=3000.0)
+2022-02-04 18:04:34,397:utility.py:utility:INFO:	 Customer(101, 'tom', '4B Blue Ridge Blvd, Brighton, MI')
+2022-02-04 18:09:12,759:utility.py:utility:INFO:Customer-account connection: (100, 208) created.
+2022-02-04 21:52:48,196:utility.py:utility:INFO:A new credit card has been created.
+2022-02-04 21:54:42,120:utility.py:utility:INFO:(pymysql.err.DataError) (1264, "Out of range value for column 'card_no' at row 1")
+[SQL: INSERT INTO creditcard (card_no, exp_date, customer_id, customer_name, credit_limit, employee_id, cr_date) VALUES (%(card_no)s, %(exp_date)s, %(customer_id)s, %(customer_name)s, %(credit_limit)s, %(employee_id)s, %(cr_date)s)]
+[parameters: {'card_no': 8880000000000565, 'exp_date': datetime.datetime(2023, 2, 4, 21, 54, 42, 105150), 'customer_id': 100, 'customer_name': None, 'credit_limit': 1000, 'employee_id': None, 'cr_date': datetime.datetime(2022, 2, 4, 21, 54, 42, 105150)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+2022-02-04 21:54:42,152:utility.py:utility:INFO:(pymysql.err.DataError) (1264, "Out of range value for column 'card_no' at row 1")
+[SQL: INSERT INTO creditcard (card_no, exp_date, customer_id, customer_name, credit_limit, employee_id, cr_date) VALUES (%(card_no)s, %(exp_date)s, %(customer_id)s, %(customer_name)s, %(credit_limit)s, %(employee_id)s, %(cr_date)s)]
+[parameters: {'card_no': 8880000000000565, 'exp_date': datetime.datetime(2023, 2, 4, 21, 54, 42, 105150), 'customer_id': 100, 'customer_name': None, 'credit_limit': 1000, 'employee_id': None, 'cr_date': datetime.datetime(2022, 2, 4, 21, 54, 42, 105150)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+2022-02-04 21:54:42,167:utility.py:utility:INFO:The credit card creation faild due to low level errors.
+2022-02-04 21:56:36,026:utility.py:utility:INFO:(pymysql.err.DataError) (1264, "Out of range value for column 'card_no' at row 1")
+[SQL: INSERT INTO creditcard (card_no, exp_date, customer_id, customer_name, credit_limit, employee_id, cr_date) VALUES (%(card_no)s, %(exp_date)s, %(customer_id)s, %(customer_name)s, %(credit_limit)s, %(employee_id)s, %(cr_date)s)]
+[parameters: {'card_no': 8800000566, 'exp_date': datetime.datetime(2023, 2, 4, 21, 56, 36, 10941), 'customer_id': 100, 'customer_name': None, 'credit_limit': 1000, 'employee_id': None, 'cr_date': datetime.datetime(2022, 2, 4, 21, 56, 36, 10941)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+2022-02-04 21:56:36,042:utility.py:utility:INFO:(pymysql.err.DataError) (1264, "Out of range value for column 'card_no' at row 1")
+[SQL: INSERT INTO creditcard (card_no, exp_date, customer_id, customer_name, credit_limit, employee_id, cr_date) VALUES (%(card_no)s, %(exp_date)s, %(customer_id)s, %(customer_name)s, %(credit_limit)s, %(employee_id)s, %(cr_date)s)]
+[parameters: {'card_no': 8800000566, 'exp_date': datetime.datetime(2023, 2, 4, 21, 56, 36, 10941), 'customer_id': 100, 'customer_name': None, 'credit_limit': 1000, 'employee_id': None, 'cr_date': datetime.datetime(2022, 2, 4, 21, 56, 36, 10941)}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+2022-02-04 21:56:36,042:utility.py:utility:INFO:The credit card creation faild due to low level errors.
+2022-02-04 21:56:47,868:utility.py:utility:INFO:A new credit card has been created.
+2022-02-04 22:31:33,401:utility.py:utility:INFO:A new credit card has been created.
+2022-02-04 22:32:34,136:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'status' in 'field list'")
+[SQL: INSERT INTO creditcard (customer_id, status, note, employee_id, app_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(app_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'app_date': datetime.datetime(2022, 2, 4, 22, 32, 34, 89179), 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-04 22:32:34,167:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'status' in 'field list'")
+[SQL: INSERT INTO creditcard (customer_id, status, note, employee_id, app_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(app_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'app_date': datetime.datetime(2022, 2, 4, 22, 32, 34, 89179), 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-04 22:37:37,177:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'status' in 'field list'")
+[SQL: INSERT INTO creditcard (customer_id, status, note, employee_id, app_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(app_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'app_date': datetime.datetime(2022, 2, 4, 22, 37, 37, 146523), 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-04 22:37:37,193:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'status' in 'field list'")
+[SQL: INSERT INTO creditcard (customer_id, status, note, employee_id, app_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(app_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'app_date': datetime.datetime(2022, 2, 4, 22, 37, 37, 146523), 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-05 05:24:45,696:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:38:02,186:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:38:53,060:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:43:17,529:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:43:55,359:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:44:56,144:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:45:09,606:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:46:42,198:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:47:31,661:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:47:57,858:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:48:23,918:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column '_password' in 'field list'")
+[SQL: INSERT INTO employee (name, login, _password) VALUES (%(name)s, %(login)s, %(_password)s)]
+[parameters: {'name': 'jerry', 'login': 'a0582', '_password': 44571}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-05 05:48:23,945:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column '_password' in 'field list'")
+[SQL: INSERT INTO employee (name, login, _password) VALUES (%(name)s, %(login)s, %(_password)s)]
+[parameters: {'name': 'jerry', 'login': 'a0582', '_password': 44571}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-05 05:48:23,945:utility.py:utility:INFO:The employee creation faild.
+2022-02-05 05:52:57,199:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column '_password' in 'field list'")
+[SQL: INSERT INTO employee (name, login, _password) VALUES (%(name)s, %(login)s, %(_password)s)]
+[parameters: {'name': 'jerry', 'login': 'a0588', '_password': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-05 05:52:57,235:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column '_password' in 'field list'")
+[SQL: INSERT INTO employee (name, login, _password) VALUES (%(name)s, %(login)s, %(_password)s)]
+[parameters: {'name': 'jerry', 'login': 'a0588', '_password': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-05 05:52:57,235:utility.py:utility:INFO:The employee creation faild.
+2022-02-05 05:53:32,516:utility.py:utility:INFO:The employee has been created.
+2022-02-05 05:53:48,858:utility.py:utility:INFO:The employee has been created.
+2022-02-05 06:04:58,135:utility.py:utility:INFO:The employee has been created.
+2022-02-05 06:10:50,568:utility.py:utility:INFO:The employee has been created.
+2022-02-05 06:12:41,045:utility.py:utility:INFO:The employee has been created.
+2022-02-05 07:38:43,534:utility.py:utility:INFO:101
+2022-02-05 07:38:43,628:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:05:26,874:utility.py:utility:INFO:101
+2022-02-05 08:05:26,874:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:05:37,588:utility.py:utility:INFO:169
+2022-02-05 08:06:04,849:utility.py:utility:INFO:169
+2022-02-05 08:06:10,212:utility.py:utility:INFO:169
+2022-02-05 08:06:14,218:utility.py:utility:INFO:169
+2022-02-05 08:07:14,653:utility.py:utility:INFO:101
+2022-02-05 08:07:14,669:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:07:14,669:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:10:15,390:utility.py:utility:INFO:101
+2022-02-05 08:10:15,422:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:10:15,422:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:13:26,469:utility.py:utility:INFO:101
+2022-02-05 08:13:26,485:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:13:26,485:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:14:24,743:utility.py:utility:INFO:101
+2022-02-05 08:14:24,790:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:14:24,790:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:17:50,020:utility.py:utility:INFO:101
+2022-02-05 08:17:50,035:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:17:50,035:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:18:30,678:utility.py:utility:INFO:101
+2022-02-05 08:18:30,693:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:18:30,693:utility.py:utility:INFO:account creation failed -- customer with id=101 not found.
+2022-02-05 08:20:39,869:utility.py:utility:INFO:101
+2022-02-05 08:20:39,916:utility.py:utility:INFO:No row was found when one was required
+2022-02-05 08:22:38,238:utility.py:utility:INFO:169
+2022-02-05 08:27:15,315:utility.py:utility:INFO:169
+2022-02-05 08:33:28,625:utility.py:utility:INFO:169
+2022-02-05 08:44:55,858:management_of_transaction.py:utility:INFO:Withdraw transaction succeeded
+2022-02-05 08:44:55,858:management_of_transaction.py:utility:INFO:Transaction id: 20172; amount withdrawn: 30 account balance: 515.0 
+2022-02-05 08:46:12,424:management_of_transaction.py:utility:INFO:Deposit transaction succeeded
+2022-02-05 08:46:12,424:management_of_transaction.py:utility:INFO:Transaction id: 44; amount deposited: 30.0; account balance: 545.0 
+2022-02-05 11:04:40,360:utility.py:utility:INFO:169
+2022-02-05 11:07:56,515:utility.py:utility:INFO:169
+2022-02-05 11:08:31,878:utility.py:utility:INFO:169
+2022-02-05 11:09:00,298:utility.py:utility:INFO:169
+2022-02-05 11:10:48,855:utility.py:utility:INFO:169
+2022-02-05 11:11:12,007:utility.py:utility:INFO:169
+2022-02-05 11:11:13,272:utility.py:utility:INFO:169
+2022-02-05 11:12:13,272:utility.py:utility:INFO:169
+2022-02-06 15:43:59,671:utility.py:utility:INFO:169
+2022-02-06 15:43:59,827:utility.py:utility:INFO:No row was found when one was required
+2022-02-06 16:44:17,280:utility.py:utility:INFO:169
+2022-02-06 16:44:17,407:utility.py:utility:INFO:No row was found when one was required
+2022-02-10 22:59:27,120:utility.py:utility:INFO:8
+2022-02-10 22:59:27,303:utility.py:utility:INFO:No row was found when one was required
+2022-02-10 22:59:43,117:utility.py:utility:INFO:1
+2022-02-10 23:12:38,760:utility.py:utility:INFO:1
+2022-02-10 23:25:28,209:utility.py:utility:INFO:1
+2022-02-10 23:25:48,037:utility.py:utility:INFO:1
+2022-02-10 23:26:01,477:utility.py:utility:INFO:2
+2022-02-10 23:26:44,941:utility.py:utility:INFO:2
+2022-02-10 23:28:37,452:utility.py:utility:INFO:2
+2022-02-10 23:30:18,718:utility.py:utility:INFO:2
+2022-02-10 23:32:33,858:utility.py:utility:INFO:2
+2022-02-10 23:47:33,928:utility.py:utility:INFO:2
+2022-02-10 23:55:42,497:utility.py:utility:INFO:2
+2022-02-11 00:04:56,355:utility.py:utility:INFO:2
+2022-02-11 00:07:21,127:utility.py:utility:INFO:2
+2022-02-11 00:12:02,255:utility.py:utility:INFO:2
+2022-02-11 00:13:49,012:utility.py:utility:INFO:2
+2022-02-11 00:17:53,394:utility.py:utility:INFO:2
+2022-02-11 00:18:53,114:utility.py:utility:INFO:2
+2022-02-11 00:20:23,001:utility.py:utility:INFO:2
+2022-02-11 06:33:06,937:utility.py:utility:INFO:2
+2022-02-11 06:35:52,709:utility.py:utility:INFO:2
+2022-02-11 06:37:39,610:utility.py:utility:INFO:2
+2022-02-11 06:38:17,964:utility.py:utility:INFO:2
+2022-02-11 06:38:18,058:utility.py:utility:INFO:1
+2022-02-11 06:39:10,224:utility.py:utility:INFO:2
+2022-02-11 06:39:10,318:utility.py:utility:INFO:1
+2022-02-11 06:39:10,365:utility.py:utility:INFO:1
+2022-02-11 06:48:49,194:utility.py:utility:INFO:2
+2022-02-11 06:48:49,335:utility.py:utility:INFO:1
+2022-02-11 06:48:49,381:utility.py:utility:INFO:1
+2022-02-11 06:50:16,135:utility.py:utility:INFO:2
+2022-02-11 06:50:16,213:utility.py:utility:INFO:1
+2022-02-11 06:50:16,254:utility.py:utility:INFO:99
+2022-02-11 06:50:16,254:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 06:57:25,198:utility.py:utility:INFO:2
+2022-02-11 06:58:12,535:utility.py:utility:INFO:2
+2022-02-11 06:59:29,625:utility.py:utility:INFO:2
+2022-02-11 07:00:35,721:utility.py:utility:INFO:2
+2022-02-11 07:00:35,799:utility.py:utility:INFO:1
+2022-02-11 07:00:35,846:utility.py:utility:INFO:99
+2022-02-11 07:00:35,846:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 07:10:19,862:utility.py:utility:INFO:2
+2022-02-11 07:13:18,059:utility.py:utility:INFO:2
+2022-02-11 07:14:09,055:utility.py:utility:INFO:2
+2022-02-11 07:14:30,084:utility.py:utility:INFO:2
+2022-02-11 07:14:53,735:utility.py:utility:INFO:2
+2022-02-11 07:16:32,649:utility.py:utility:INFO:2
+2022-02-11 07:32:41,584:utility.py:utility:INFO:2
+2022-02-11 07:34:54,639:utility.py:utility:INFO:2
+2022-02-11 07:37:08,215:utility.py:utility:INFO:2
+2022-02-11 07:40:32,791:utility.py:utility:INFO:2
+2022-02-11 07:41:12,265:utility.py:utility:INFO:2
+2022-02-11 07:41:44,595:utility.py:utility:INFO:2
+2022-02-11 07:41:44,751:utility.py:utility:INFO:1
+2022-02-11 07:41:44,798:utility.py:utility:INFO:99
+2022-02-11 07:41:44,798:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 07:41:50,050:utility.py:utility:INFO:2
+2022-02-11 07:41:50,144:utility.py:utility:INFO:1
+2022-02-11 07:41:50,191:utility.py:utility:INFO:99
+2022-02-11 07:41:50,191:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 07:42:57,011:utility.py:utility:INFO:2
+2022-02-11 07:42:57,145:utility.py:utility:INFO:1
+2022-02-11 07:42:57,193:utility.py:utility:INFO:1
+2022-02-11 07:44:27,255:utility.py:utility:INFO:2
+2022-02-11 07:45:18,975:utility.py:utility:INFO:2
+2022-02-11 07:45:19,037:utility.py:utility:INFO:1
+2022-02-11 07:45:19,084:utility.py:utility:INFO:1
+2022-02-11 08:32:23,521:utility.py:utility:INFO:2
+2022-02-11 08:35:30,034:utility.py:utility:INFO:2
+2022-02-11 08:35:30,096:utility.py:utility:INFO:1
+2022-02-11 08:35:30,143:utility.py:utility:INFO:1
+2022-02-11 08:36:20,166:utility.py:utility:INFO:2
+2022-02-11 08:36:20,260:utility.py:utility:INFO:1
+2022-02-11 08:36:20,307:utility.py:utility:INFO:1
+2022-02-11 09:04:54,487:utility.py:utility:INFO:2
+2022-02-11 09:04:54,565:utility.py:utility:INFO:1
+2022-02-11 09:04:54,831:utility.py:utility:INFO:1
+2022-02-11 09:10:57,928:utility.py:utility:INFO:2
+2022-02-11 09:10:57,991:utility.py:utility:INFO:1
+2022-02-11 09:10:58,006:utility.py:utility:INFO:1
+2022-02-11 09:12:03,320:utility.py:utility:INFO:2
+2022-02-11 09:12:03,367:utility.py:utility:INFO:1
+2022-02-11 09:12:03,414:utility.py:utility:INFO:1
+2022-02-11 09:29:25,358:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-11 09:30:17,866:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-11 09:30:27,139:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-11 09:31:15,544:utility.py:utility:INFO:Multiple rows were found when exactly one was required
+2022-02-11 09:31:40,783:utility.py:utility:INFO:'Query' object has no attribute 'fetchall'
+2022-02-11 09:36:42,833:utility.py:utility:INFO:name 'BankAccount' is not defined
+2022-02-11 10:20:36,347:utility.py:utility:INFO:1
+2022-02-11 10:20:52,832:utility.py:utility:INFO:1
+2022-02-11 10:21:24,389:utility.py:utility:INFO:2
+2022-02-11 10:22:42,869:utility.py:utility:INFO:99
+2022-02-11 10:22:42,869:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 10:23:12,542:utility.py:utility:INFO:999
+2022-02-11 10:23:12,542:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 10:23:49,465:utility.py:utility:INFO:329
+2022-02-11 10:23:49,465:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 10:24:06,487:utility.py:utility:INFO:1
+2022-02-11 10:24:20,351:utility.py:utility:INFO:1
+2022-02-11 10:49:28,257:utility.py:utility:INFO:329
+2022-02-11 10:49:28,288:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 10:50:05,784:utility.py:utility:INFO:99
+2022-02-11 10:50:05,784:utility.py:utility:INFO:No row was found when one was required
+2022-02-11 10:56:26,025:utility.py:utility:INFO:2
+2022-02-11 11:03:53,860:utility.py:utility:INFO:1
+2022-02-11 11:10:18,696:utility.py:utility:INFO:1
+2022-02-11 11:12:22,879:utility.py:utility:INFO:1
+2022-02-11 11:21:50,640:utility.py:utility:INFO:1
+2022-02-11 11:21:57,744:utility.py:utility:INFO:1
+2022-02-11 11:31:32,772:utility.py:utility:INFO:2
+2022-02-11 11:31:56,880:utility.py:utility:INFO:2
+2022-02-11 11:32:34,149:utility.py:utility:INFO:3
+2022-02-11 11:32:48,255:utility.py:utility:INFO:4
+2022-02-11 11:32:58,106:utility.py:utility:INFO:5
+2022-02-11 11:33:20,219:utility.py:utility:INFO:6
+2022-02-11 11:34:08,482:utility.py:utility:INFO:6
+2022-02-11 11:35:26,755:utility.py:utility:INFO:5
+2022-02-11 11:50:59,921:utility.py:utility:INFO:7
+2022-02-11 11:51:09,585:utility.py:utility:INFO:7
+2022-02-12 07:00:04,743:utility.py:utility:INFO:type object 'TransactionManager' has no attribute 'create_trans'
+2022-02-12 09:33:40,676:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-12 09:33:40,676:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-12 09:33:58,035:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-12 09:33:58,035:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 100, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-12 09:34:06,301:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 7, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-12 09:34:06,301:utility.py:utility:INFO:(pymysql.err.OperationalError) (1054, "Unknown column 'apply_date' in 'field list'")
+[SQL: INSERT INTO card_application (customer_id, status, note, employee_id, apply_date, apprv_date, card_id) VALUES (%(customer_id)s, %(status)s, %(note)s, %(employee_id)s, %(apply_date)s, %(apprv_date)s, %(card_id)s)]
+[parameters: {'customer_id': 7, 'status': None, 'note': None, 'employee_id': None, 'apply_date': None, 'apprv_date': None, 'card_id': None}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+--------------------------------------
+2022-02-12 09:47:14,186:utility.py:utility:INFO:Class 'builtins.int' is not mapped
+2022-02-12 09:47:14,186:utility.py:utility:INFO:Class 'builtins.int' is not mapped
+2022-02-12 09:48:51,666:utility.py:utility:INFO:Class 'builtins.int' is not mapped
+2022-02-12 09:48:51,666:utility.py:utility:INFO:Class 'builtins.int' is not mapped
+2022-02-14 08:12:33,201:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:13:24,016:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:28:39,300:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:29:33,797:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:35:26,192:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:36:08,631:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 08:40:08,752:utility.py:utility:INFO:A new credit card has been created.
+2022-02-14 21:18:44,253:utility.py:utility:INFO:The employee has been created.
+2022-02-15 08:45:08,066:utility.py:utility:INFO:(pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE card_application.id = 8' at line 1")
+[SQL: UPDATE card_application SET  WHERE card_application.id = %(id_1)s]
+[parameters: {'id_1': 8}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-02-15 08:45:08,066:utility.py:utility:INFO:(pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE card_application.id = 9' at line 1")
+[SQL: UPDATE card_application SET  WHERE card_application.id = %(id_1)s]
+[parameters: {'id_1': 9}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-02-15 08:45:08,066:utility.py:utility:INFO:(pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE card_application.id = 10' at line 1")
+[SQL: UPDATE card_application SET  WHERE card_application.id = %(id_1)s]
+[parameters: {'id_1': 10}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-02-15 09:09:31,461:utility.py:utility:INFO:3
+2022-02-15 09:09:31,539:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:11:19,608:utility.py:utility:INFO:3
+2022-02-15 09:11:19,670:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:12:26,433:utility.py:utility:INFO:3
+2022-02-15 09:12:26,480:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:14:56,103:utility.py:utility:INFO:3
+2022-02-15 09:14:56,150:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:17:13,611:utility.py:utility:INFO:1
+2022-02-15 09:17:13,658:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:17:13,689:utility.py:utility:INFO:2
+2022-02-15 09:17:13,720:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:20:17,851:utility.py:utility:INFO:1
+2022-02-15 09:20:17,898:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:20:17,914:utility.py:utility:INFO:2
+2022-02-15 09:20:17,946:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:20:17,961:utility.py:utility:INFO:3
+2022-02-15 09:20:17,993:utility.py:utility:INFO:A new credit card has been created.
+2022-02-15 09:25:17,934:utility.py:utility:INFO:3
+2022-02-15 09:25:17,981:utility.py:utility:INFO:A new credit card has been created.

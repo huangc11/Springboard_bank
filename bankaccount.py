@@ -14,7 +14,7 @@ class BankAccount(Base):
 
     __tablename__ = 'bankaccount'
 
-    id = Column(INTEGER, primary_key=True)
+    account_id = Column(INTEGER, primary_key=True)
     account_no = Column(INTEGER)
     account_type = Column(VARCHAR(30), nullable=False)
     balance = Column(FLOAT)
@@ -30,8 +30,8 @@ class BankAccount(Base):
 
 
     def __repr__(self):
-        return ("BankAccount(id={id}, account_no={acc_no}, account_type='{acc_type}', balance={balance})".
-                format(id=self.id, acc_no=self.account_no, acc_type=self.account_type, balance=self.balance))
+        return ("BankAccount(account_id={id}, account_no={acc_no}, account_type='{acc_type}', balance={balance})".
+                format(id=self.account_id, acc_no=self.account_no, acc_type=self.account_type, balance=self.balance))
 
     def withdraw(self, p_amount):
         """ withraw month from this account
@@ -101,7 +101,7 @@ class BankAccount(Base):
         try:
             session = Database.get_session()
             rec = session.query(BankAccount).\
-                    filter(BankAccount.id == p_account_id).\
+                    filter(BankAccount.account_id == p_account_id).\
                     scalar()
         except Exception as e:
             return None
@@ -111,26 +111,35 @@ class BankAccount(Base):
 
 class SavingsAccount(BankAccount):
     """ A class to represent a bank account"""
-    max_intrst_rate = 0.02
-   # __prefix_of_accno=30000
+    _max_intrst_rate = 0.025
+    _prefix_of_accno=30000
 
-    def __init__(self, balance=0, intrst_rate=0):
+    def __init__(self, balance=0, p_intrst_rate=0.0):
        BankAccount.__init__(self, balance)
        self.account_type = "savings"
        self.balance = balance
-       self.intrst_rate =intrst_rate
+
+       #
+       self.intrst_rate = min(p_intrst_rate,SavingsAccount._max_intrst_rate)
+
 
        #generaet account_no,  a 5-digit number whic starts with '3'
-       self.account_no = Sequence.next() + SavingsAccount.__prefix_of_accno
+       self.account_no = Sequence.next() + SavingsAccount._prefix_of_accno
 
+    def __repr__(self):
+        return ("BankAccount(account_id={id}, account_no={acc_no}, account_type='{acc_type}', balance={balance}, intrst_rate={intrst_rate} )".
+                format(id=self.account_id, acc_no=self.account_no, acc_type=self.account_type, balance=self.balance, intrst_rate=self.intrst_rate))
 
-    def calc_interest(self, n_period=1):
-        return self.balance*((1+ self.intrst.rate)**n_period-1)
+    @staticmethod
+    def create_account(p_balance,  p_intrs_rate):
+        o_account= SavingsAccount(p_balance,  p_intrs_rate)
+        new_account=o_account.insert_to_db()
+        return new_account
 
 class CheckingAccount(BankAccount):
     ''' A class to represent a bank account'''
 
-    __prefix_of_accno = 20000
+    _prefix_of_accno = 20000
 
     def __init__(self, balance=0):
        BankAccount.__init__(self, balance)
@@ -138,8 +147,13 @@ class CheckingAccount(BankAccount):
        self.balance = balance
 
        # generaet account_no,  a 5-digit number whic starts with '2'
-       self.account_no = Sequence.next() +  CheckingAccount.__prefix_of_accno
+       self.account_no = Sequence.next() +  CheckingAccount._prefix_of_accno
 
+    @staticmethod
+    def create_account(p_balance):
+        o_account= CheckingAccount(p_balance)
+        new_account=o_account.insert_to_db()
+        return new_account
 
     def deposit(self, amount):
         self.balance += amount
@@ -147,9 +161,9 @@ class CheckingAccount(BankAccount):
 if __name__ == '__main__':
     #Database.initialise()
 
-    #new_acc =BankAccount.create_account('c', 400)
 
-    print(Sequence.curr())
+    new_checking=CheckingAccount.create_account(311)
+    new_savings =SavingsAccount.create_account(312,0.08)
 
 
 

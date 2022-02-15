@@ -34,9 +34,20 @@ class Customer(Base):
     def __repr__(self):
       return ("Customer({id}, '{name}', '{address}')".format(id=self.id, name=self.name, address=self.address))
 
+
+    def insert_to_db(self):
+        """insert a new account record into database.
+          Returns:
+                  object of account if succeed
+                  None, if failure
+        """
+        new_customer = Database.new_rec_in_db(self)
+
+        return new_customer
+
     @staticmethod
-    def f_customer_not_exist(p_name, p_addr=None):
-        """search  customer in database by name and address
+    def not_exist_by_name_addr(p_name, p_addr=None):
+        """search  customer in database by name and address. Return record if found or None if failed
           Args:
             p_name (str): customer name
             p_addr (str): customer address
@@ -50,69 +61,39 @@ class Customer(Base):
             rec = session.query(Customer).filter(Customer.name == p_name).filter(or_(Customer.address == p_addr,
                            p_addr == None)).one()
             return False
+        except MultipleResultsFound:
+            return False
         except NoResultFound:
             return True
         except Exception as e:
+            print(e)
             ut.log_exeption(e)
             return False
 
-    @staticmethod
-    def f_seek_db_by_id(p_id):
-        """search  customer in database by name and address
-          Args:
-            p_id (int): customer id
 
-        Returns:
-            customer object (if found) or None (not found)
+    @staticmethod
+    def get_by_id(p_id):
+        """Get the custome record from database by customer id. Returns  customer object (if found) or None (not found)
         """
-        ut.logger_app.info(p_id)
+        ut.log_info(p_id)
         try:
             session = Database.get_session()
             rec = session.query(Customer).filter(Customer.id == p_id).one()
             return rec
         except Exception as e:
-            ut.logger_app.info(e)
+            ut.log_exeption(e)
             return None
-
-
-def create_customer(p_name, p_addr):
-    """create customer and save to database
-
-      Args:
-        p_name
-        p_addr( (Database object):
-
-      Returns:
-              True, if success
-              False, if failure
-    """
-    # check if customer with same name and address existing
-    b_c_not_exist = Customer.f_customer_not_exist(p_name, p_addr)
-
-    if  b_c_not_exist:  #if not exist
-
-            customer = Customer(p_name, p_addr)
-            new_customer= Database.new_rec_in_db(customer)
-
-            # db creaton succeeds
-            if new_customer!=None:
-                ut.print_success('customer has been created')
-                ut.print_success(new_customer.id)
-                print(new_customer)
-                return new_customer
-            # db creaton fails
-            else:
-                return None
-
-    #  seeking fails, creaton aborts
-    else:
-           return False
 
 
 
 
 if __name__ == '__main__':
     Database.initialise()
-    res=create_customer('fei', 'kirkland')
+    res = Customer.not_exist_by_name_addr('maria','kir2kland')
     print(res)
+
+    res =Customer.get_by_id(169)
+    print(res)
+
+
 

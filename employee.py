@@ -17,39 +17,63 @@ class Employee(Base):
     id = Column(INTEGER, primary_key=True)
     name  = Column(VARCHAR(60))
     login = Column(VARCHAR(20))
-    password = Column(VARCHAR(20))
+    password = Column(INTEGER)
+
+
+    __pwd_key =43989
 
     def __init__(self, name):
         self.name=name
 
         tmpseq = Seq.next()
         self.login = 'a'+str(tmpseq).rjust(4,'0')
-        self.password = str(tmpseq)
+        self.password = tmpseq
+
 
     def __repr__(self):
-        return("Employee(id={},name='{}',login='{}', password='{}')".format(self.id, self.name, self.login,self.password))
+        return("Employee(id={},name='{}',login='{}')".format(self.id, self.name, self.login))
         #return ("Employee({id}, '{name}', '{login}'".format(self.id, self.name, self.login))
 
+
     def insert_into_db(self):
+        """insert a new account record into database"""
+        new_emp= Database.new_rec_in_db(self)
+        return new_emp
+
+    def update_passwd(self,  password ):
+        self.password = password
+        Database.update_rec_in_db(Employee, self.id, {'password':self.password})
 
 
-            new_emp= Database.new_rec_in_db(self)
+    @staticmethod
+    def get_by_id(p_id):
+        """Get the employee  record from database by id. Returns employee object (if found) or None (not found)
+        """
+        session = Database.get_session()
+        rec = session.query(Employee).filter(Employee.id == p_id).scalar()
+        return rec
 
-            # db creaton succeeds
-            if new_emp!=None:
-                ut.log_info("The employee has been created.")
-                ut.log_info(self)
-                return new_emp
+    def get_by_login(p_login):
+        """Get the employee  record from database by id. Returns employee object (if found) or None (not found)
+        """
+        session = Database.get_session()
+        rec = session.query(Employee).filter(Employee.login == p_login).scalar()
+        return rec
 
-            ut.log_info("The employee creation faild.")
-
-            return None
-
+    @staticmethod
+    def new_emp(emp_name):
+        tmp_emp =Employee(emp_name)
+        new_emp = tmp_emp.insert_into_db()
+        return new_emp
 
 if __name__ =="__main__" :
 
-    Database.initialise()
 
-    emp =Employee('tom')
-    emp.insert_into_db()
-    print(emp)
+    emp = Employee.get_by_login('a0733')
+    emp.update_passwd('844')
+
+
+
+
+
+
